@@ -1,16 +1,17 @@
 ﻿using SistemaRestaurante.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace SistemaRestaurante.Data
 {
     public class BancoFake
     {
-        public static List<Produto> Produtos = new();
+        public static BindingList<Produto> Produtos = new BindingList<Produto>();
 
-        public static List<Comanda> Comandas = new();
+        public static BindingList<Produto> Comandas = new BindingList<Produto>();
 
-        public static List<Pagamento> Pagamentos = new();
+        public static BindingList<Produto> Pagamentos = new BindingList<Produto>();
     }
 }

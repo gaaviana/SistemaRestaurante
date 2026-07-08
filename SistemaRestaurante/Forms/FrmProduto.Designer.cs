@@ -31,15 +31,15 @@
             tableLayoutPanel1 = new TableLayoutPanel();
             lblTitulo = new Label();
             pnlFooter = new Panel();
-            lblNome = new Label();
-            lblCategoria = new Label();
-            lblPreco = new Label();
+            btnCancelar = new Button();
+            btnSalvar = new Button();
             tlpCampos = new TableLayoutPanel();
+            lblCategoria = new Label();
+            lblNome = new Label();
+            lblPreco = new Label();
             txtNome = new TextBox();
             txtPreco = new TextBox();
             cbCategoria = new ComboBox();
-            btnCancelar = new Button();
-            btnCadastrar = new Button();
             tableLayoutPanel1.SuspendLayout();
             pnlFooter.SuspendLayout();
             tlpCampos.SuspendLayout();
@@ -70,53 +70,55 @@
             lblTitulo.Location = new Point(0, 0);
             lblTitulo.Margin = new Padding(0);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(224, 38);
+            lblTitulo.Size = new Size(251, 38);
             lblTitulo.TabIndex = 4;
-            lblTitulo.Text = "Cadastrar Produto";
+            lblTitulo.Text = "Cadastro de Produto";
             lblTitulo.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pnlFooter
             // 
             pnlFooter.Controls.Add(btnCancelar);
-            pnlFooter.Controls.Add(btnCadastrar);
+            pnlFooter.Controls.Add(btnSalvar);
             pnlFooter.Dock = DockStyle.Fill;
             pnlFooter.Location = new Point(3, 326);
             pnlFooter.Name = "pnlFooter";
             pnlFooter.Size = new Size(528, 52);
             pnlFooter.TabIndex = 6;
             // 
-            // lblNome
+            // btnCancelar
             // 
-            lblNome.AutoSize = true;
-            lblNome.Dock = DockStyle.Bottom;
-            lblNome.Font = new Font("Segoe UI", 12F);
-            lblNome.Location = new Point(3, 25);
-            lblNome.Name = "lblNome";
-            lblNome.Size = new Size(522, 21);
-            lblNome.TabIndex = 0;
-            lblNome.Text = "Nome do Produto";
+            btnCancelar.BackColor = Color.White;
+            btnCancelar.Cursor = Cursors.Hand;
+            btnCancelar.FlatAppearance.BorderColor = Color.FromArgb(30, 41, 59);
+            btnCancelar.FlatAppearance.BorderSize = 2;
+            btnCancelar.FlatAppearance.MouseOverBackColor = Color.Gainsboro;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCancelar.ForeColor = Color.FromArgb(30, 41, 59);
+            btnCancelar.Location = new Point(111, 12);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(150, 29);
+            btnCancelar.TabIndex = 10;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
-            // lblCategoria
+            // btnSalvar
             // 
-            lblCategoria.AutoSize = true;
-            lblCategoria.Dock = DockStyle.Bottom;
-            lblCategoria.Font = new Font("Segoe UI", 12F);
-            lblCategoria.Location = new Point(3, 117);
-            lblCategoria.Name = "lblCategoria";
-            lblCategoria.Size = new Size(522, 21);
-            lblCategoria.TabIndex = 1;
-            lblCategoria.Text = "Categoria";
-            // 
-            // lblPreco
-            // 
-            lblPreco.AutoSize = true;
-            lblPreco.Dock = DockStyle.Bottom;
-            lblPreco.Font = new Font("Segoe UI", 12F);
-            lblPreco.Location = new Point(3, 209);
-            lblPreco.Name = "lblPreco";
-            lblPreco.Size = new Size(522, 21);
-            lblPreco.TabIndex = 2;
-            lblPreco.Text = "Preço";
+            btnSalvar.BackColor = Color.FromArgb(30, 41, 59);
+            btnSalvar.Cursor = Cursors.Hand;
+            btnSalvar.FlatAppearance.BorderSize = 0;
+            btnSalvar.FlatAppearance.MouseOverBackColor = Color.FromArgb(86, 118, 141);
+            btnSalvar.FlatStyle = FlatStyle.Flat;
+            btnSalvar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSalvar.ForeColor = Color.White;
+            btnSalvar.Location = new Point(267, 12);
+            btnSalvar.Name = "btnSalvar";
+            btnSalvar.Size = new Size(150, 29);
+            btnSalvar.TabIndex = 9;
+            btnSalvar.Text = "Salvar";
+            btnSalvar.UseVisualStyleBackColor = false;
+            btnSalvar.Click += btnSalvar_Click;
             // 
             // tlpCampos
             // 
@@ -141,6 +143,39 @@
             tlpCampos.Size = new Size(528, 279);
             tlpCampos.TabIndex = 7;
             // 
+            // lblCategoria
+            // 
+            lblCategoria.AutoSize = true;
+            lblCategoria.Dock = DockStyle.Bottom;
+            lblCategoria.Font = new Font("Segoe UI", 12F);
+            lblCategoria.Location = new Point(3, 117);
+            lblCategoria.Name = "lblCategoria";
+            lblCategoria.Size = new Size(522, 21);
+            lblCategoria.TabIndex = 1;
+            lblCategoria.Text = "Categoria";
+            // 
+            // lblNome
+            // 
+            lblNome.AutoSize = true;
+            lblNome.Dock = DockStyle.Bottom;
+            lblNome.Font = new Font("Segoe UI", 12F);
+            lblNome.Location = new Point(3, 25);
+            lblNome.Name = "lblNome";
+            lblNome.Size = new Size(522, 21);
+            lblNome.TabIndex = 0;
+            lblNome.Text = "Nome do Produto";
+            // 
+            // lblPreco
+            // 
+            lblPreco.AutoSize = true;
+            lblPreco.Dock = DockStyle.Bottom;
+            lblPreco.Font = new Font("Segoe UI", 12F);
+            lblPreco.Location = new Point(3, 209);
+            lblPreco.Name = "lblPreco";
+            lblPreco.Size = new Size(522, 21);
+            lblPreco.TabIndex = 2;
+            lblPreco.Text = "Preço";
+            // 
             // txtNome
             // 
             txtNome.Location = new Point(3, 49);
@@ -158,44 +193,11 @@
             // cbCategoria
             // 
             cbCategoria.FormattingEnabled = true;
+            cbCategoria.Items.AddRange(new object[] { "Comida", "Bebida", "Sobremesa" });
             cbCategoria.Location = new Point(3, 141);
             cbCategoria.Name = "cbCategoria";
             cbCategoria.Size = new Size(260, 23);
             cbCategoria.TabIndex = 5;
-            // 
-            // btnCancelar
-            // 
-            btnCancelar.BackColor = Color.White;
-            btnCancelar.Cursor = Cursors.Hand;
-            btnCancelar.FlatAppearance.BorderColor = Color.FromArgb(30, 41, 59);
-            btnCancelar.FlatAppearance.BorderSize = 2;
-            btnCancelar.FlatAppearance.MouseOverBackColor = Color.Gainsboro;
-            btnCancelar.FlatStyle = FlatStyle.Flat;
-            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCancelar.ForeColor = Color.FromArgb(30, 41, 59);
-            btnCancelar.Location = new Point(111, 12);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(150, 29);
-            btnCancelar.TabIndex = 10;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = false;
-            btnCancelar.Click += btnCancelar_Click;
-            // 
-            // btnCadastrar
-            // 
-            btnCadastrar.BackColor = Color.FromArgb(30, 41, 59);
-            btnCadastrar.Cursor = Cursors.Hand;
-            btnCadastrar.FlatAppearance.BorderSize = 0;
-            btnCadastrar.FlatAppearance.MouseOverBackColor = Color.FromArgb(86, 118, 141);
-            btnCadastrar.FlatStyle = FlatStyle.Flat;
-            btnCadastrar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCadastrar.ForeColor = Color.White;
-            btnCadastrar.Location = new Point(267, 12);
-            btnCadastrar.Name = "btnCadastrar";
-            btnCadastrar.Size = new Size(150, 29);
-            btnCadastrar.TabIndex = 9;
-            btnCadastrar.Text = "Cadastrar";
-            btnCadastrar.UseVisualStyleBackColor = false;
             // 
             // FrmProduto
             // 
@@ -208,7 +210,7 @@
             MinimizeBox = false;
             Name = "FrmProduto";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Cadastro de Produto";
+            Text = "Produto";
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
             pnlFooter.ResumeLayout(false);
@@ -230,6 +232,6 @@
         private TextBox txtPreco;
         private ComboBox cbCategoria;
         private Button btnCancelar;
-        private Button btnCadastrar;
+        private Button btnSalvar;
     }
 }

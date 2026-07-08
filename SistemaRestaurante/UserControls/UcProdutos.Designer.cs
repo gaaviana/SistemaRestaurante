@@ -103,9 +103,11 @@
             dgvProdutos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProdutos.Size = new Size(964, 371);
             dgvProdutos.TabIndex = 0;
+            dgvProdutos.CellContentClick += dgvProdutos_CellContentClick;
             // 
             // colId
             // 
+            colId.DataPropertyName = "Id";
             colId.FillWeight = 10F;
             colId.HeaderText = "Id";
             colId.Name = "colId";
@@ -113,6 +115,7 @@
             // 
             // colProduto
             // 
+            colProduto.DataPropertyName = "Nome";
             colProduto.FillWeight = 30F;
             colProduto.HeaderText = "Produto";
             colProduto.Name = "colProduto";
@@ -120,6 +123,7 @@
             // 
             // colCategoria
             // 
+            colCategoria.DataPropertyName = "Categoria";
             colCategoria.FillWeight = 20F;
             colCategoria.HeaderText = "Categoria";
             colCategoria.Name = "colCategoria";
@@ -127,6 +131,7 @@
             // 
             // colPreco
             // 
+            colPreco.DataPropertyName = "Preco";
             colPreco.FillWeight = 20F;
             colPreco.HeaderText = "Preço";
             colPreco.Name = "colPreco";
@@ -300,12 +305,6 @@
 
         private Panel pnlGrid;
         private DataGridView dgvProdutos;
-        private DataGridViewTextBoxColumn colId;
-        private DataGridViewTextBoxColumn colProduto;
-        private DataGridViewTextBoxColumn colCategoria;
-        private DataGridViewTextBoxColumn colPreco;
-        private DataGridViewButtonColumn colEditar;
-        private DataGridViewButtonColumn colExcluir;
         private Panel panelSearch;
         private Label lblPesquisar;
         private TextBox txtPesquisar;
@@ -316,5 +315,11 @@
         private Label lblTitulo;
         private Panel pnlHeaderRigth;
         private Button btnNovoProduto;
+        private DataGridViewTextBoxColumn colId;
+        private DataGridViewTextBoxColumn colProduto;
+        private DataGridViewTextBoxColumn colCategoria;
+        private DataGridViewTextBoxColumn colPreco;
+        private DataGridViewButtonColumn colEditar;
+        private DataGridViewButtonColumn colExcluir;
     }
 }
