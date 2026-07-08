@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaRestaurante.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,12 @@ namespace SistemaRestaurante.UserControls
         public UcPedido()
         {
             InitializeComponent();
+        }
+
+        private void btnFinalizarPedido_Click(object sender, EventArgs e)
+        {
+            FrmPagamento frm = new FrmPagamento();
+            frm.ShowDialog();
         }
     }
 }

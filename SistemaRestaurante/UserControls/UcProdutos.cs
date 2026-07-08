@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaRestaurante.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,12 @@ namespace SistemaRestaurante.UserControls
         public UcProdutos()
         {
             InitializeComponent();
+        }
+
+        private void btnNovoProduto_Click(object sender, EventArgs e)
+        {
+            FrmProduto frm = new FrmProduto();
+            frm.ShowDialog();
         }
     }
 }

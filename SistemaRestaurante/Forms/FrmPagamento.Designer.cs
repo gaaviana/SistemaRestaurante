@@ -48,8 +48,8 @@
             lblTroco = new Label();
             lblValorTroco = new Label();
             pnlBtns = new Panel();
-            btnConfirmarPagamento = new Button();
             btnCancelarPagamento = new Button();
+            btnConfirmarPagamento = new Button();
             tlpPagamento.SuspendLayout();
             tlpResumo.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
@@ -296,22 +296,6 @@
             pnlBtns.Size = new Size(478, 65);
             pnlBtns.TabIndex = 7;
             // 
-            // btnConfirmarPagamento
-            // 
-            btnConfirmarPagamento.BackColor = Color.FromArgb(30, 41, 59);
-            btnConfirmarPagamento.Cursor = Cursors.Hand;
-            btnConfirmarPagamento.FlatAppearance.BorderSize = 0;
-            btnConfirmarPagamento.FlatAppearance.MouseOverBackColor = Color.FromArgb(86, 118, 141);
-            btnConfirmarPagamento.FlatStyle = FlatStyle.Flat;
-            btnConfirmarPagamento.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnConfirmarPagamento.ForeColor = Color.White;
-            btnConfirmarPagamento.Location = new Point(239, 20);
-            btnConfirmarPagamento.Name = "btnConfirmarPagamento";
-            btnConfirmarPagamento.Size = new Size(150, 29);
-            btnConfirmarPagamento.TabIndex = 7;
-            btnConfirmarPagamento.Text = "Confirmar";
-            btnConfirmarPagamento.UseVisualStyleBackColor = false;
-            // 
             // btnCancelarPagamento
             // 
             btnCancelarPagamento.BackColor = Color.White;
@@ -328,6 +312,23 @@
             btnCancelarPagamento.TabIndex = 8;
             btnCancelarPagamento.Text = "Cancelar";
             btnCancelarPagamento.UseVisualStyleBackColor = false;
+            btnCancelarPagamento.Click += btnCancelarPagamento_Click;
+            // 
+            // btnConfirmarPagamento
+            // 
+            btnConfirmarPagamento.BackColor = Color.FromArgb(30, 41, 59);
+            btnConfirmarPagamento.Cursor = Cursors.Hand;
+            btnConfirmarPagamento.FlatAppearance.BorderSize = 0;
+            btnConfirmarPagamento.FlatAppearance.MouseOverBackColor = Color.FromArgb(86, 118, 141);
+            btnConfirmarPagamento.FlatStyle = FlatStyle.Flat;
+            btnConfirmarPagamento.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnConfirmarPagamento.ForeColor = Color.White;
+            btnConfirmarPagamento.Location = new Point(239, 20);
+            btnConfirmarPagamento.Name = "btnConfirmarPagamento";
+            btnConfirmarPagamento.Size = new Size(150, 29);
+            btnConfirmarPagamento.TabIndex = 7;
+            btnConfirmarPagamento.Text = "Confirmar";
+            btnConfirmarPagamento.UseVisualStyleBackColor = false;
             // 
             // FrmPagamento
             // 

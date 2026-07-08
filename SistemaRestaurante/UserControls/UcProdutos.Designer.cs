@@ -272,6 +272,7 @@
             btnNovoProduto.TabIndex = 0;
             btnNovoProduto.Text = "Novo Produto";
             btnNovoProduto.UseVisualStyleBackColor = false;
+            btnNovoProduto.Click += btnNovoProduto_Click;
             // 
             // UcProdutos
             // 

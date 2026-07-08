@@ -8,13 +8,14 @@ using System.Windows.Forms;
 
 namespace SistemaRestaurante.Forms
 {
-    public partial class FrmPagamento : Form
+    public partial class FrmProduto : Form
     {
-        public FrmPagamento()
+        public FrmProduto()
         {
             InitializeComponent();
         }
-        private void btnCancelarPagamento_Click(object sender, EventArgs e)
+
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
