@@ -14,14 +14,41 @@ namespace SistemaRestaurante.UserControls
 {
     public partial class UcPedido : UserControl
     {
-        ComandaService comandaService = new ComandaService();
+        private readonly ComandaService comandaService;
 
-        public UcPedido()
+        public UcPedido(ComandaService service)
         {
             InitializeComponent();
+
+            comandaService = service;
+
             dgvProdutos.AutoGenerateColumns = false;
+
             CarregarCb();
-            CarregarItens();
+
+            if (comandaService.ComandaAtual != null)
+            {
+                CarregarItens();
+
+                lblTotal.Text = comandaService.ComandaAtual.Total.ToString("C");
+            }
+
+            AtualizarTela();
+        }
+
+        private void AtualizarTela()
+        {
+            dgvProdutos.DataSource = null;
+            dgvProdutos.DataSource = comandaService.ComandaAtual.Itens;
+
+            lblTotal.Text = comandaService.ComandaAtual.Total.ToString("C");
+
+            cbNumero.Text = comandaService.ComandaAtual.Numero == 0
+                ? ""
+                : comandaService.ComandaAtual.Numero.ToString();
+
+            rbMesa.Checked = comandaService.ComandaAtual.Tipo == "Mesa";
+            rbViagem.Checked = comandaService.ComandaAtual.Tipo == "Viagem";
         }
 
         private void CarregarCb()
@@ -32,7 +59,7 @@ namespace SistemaRestaurante.UserControls
         }
         private void CarregarItens()
         {
-            dgvProdutos.DataSource = comandaService.Itens;
+            dgvProdutos.DataSource = comandaService.ComandaAtual;
         }
         private void btnFinalizarPedido_Click(object sender, EventArgs e)
         {
@@ -43,12 +70,16 @@ namespace SistemaRestaurante.UserControls
         public event Action PedidoSalvo;
         private void btnSalvarPedido_Click(object sender, EventArgs e)
         {
-            string tipo = rbMesa.Checked ? "Mesa" : "Viagem";
-            int numero = int.Parse(cbNumero.Text);
-            string status = "Aberta";
+            comandaService.ComandaAtual.Tipo =
+                rbMesa.Checked ? "Mesa" : "Viagem";
 
-            comandaService.CriarComanda(tipo, numero, status);
-            comandaService.Itens.Clear();
+            comandaService.ComandaAtual.Numero =
+                int.Parse(cbNumero.Text);
+
+            comandaService.ComandaAtual.Status = "Aberta";
+
+            comandaService.SalvarComanda();
+
             PedidoSalvo?.Invoke();
         }
 
@@ -60,7 +91,7 @@ namespace SistemaRestaurante.UserControls
 
             comandaService.AdicionarProduto(produto, quantidade);
 
-            lblTotal.Text = comandaService.Total.ToString("C");
+            AtualizarTela();
         }
        
     }

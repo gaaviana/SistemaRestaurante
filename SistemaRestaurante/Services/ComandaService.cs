@@ -9,28 +9,39 @@ namespace SistemaRestaurante.Services
 {
     public class ComandaService
     {
-        public BindingList<ItemPedido> Itens = new BindingList<ItemPedido>();
-        public decimal Total { get {  return Itens.Sum(i => i.Subtotal); }  }
-        public void CriarComanda(string tipo, int numero, string status)
+        public Comanda ComandaAtual { get; private set; }
+        public void NovaComanda()
         {
-            int id = 1;
-            if (BancoFake.Comandas.Count > 0)
-            {
-                id = BancoFake.Comandas.Max(p => p.Id) + 1;
-            }
-
-            Comanda comanda = new Comanda(id, tipo, numero, status, new List<ItemPedido>(Itens));
-            BancoFake.Comandas.Add(comanda);
+            ComandaAtual = new Comanda(
+                0,
+                "",
+                0,
+                "Aberta",
+                new List<ItemPedido>()
+            );
+        }
+        public void AbrirComanda(Comanda comanda)
+        {
+            ComandaAtual = comanda;
         }
 
         public void AdicionarProduto(Produto produto, int qtd)
         {
-            Itens.Add(new ItemPedido(produto, qtd));
+            ComandaAtual.Itens.Add(new ItemPedido(produto, qtd));
         }
 
-        public void RemoverProduto()
+        public void SalvarComanda()
         {
+            if (ComandaAtual.Id == 0)
+            {
+                ComandaAtual.Id = BancoFake.Comandas.Count + 1;
+                BancoFake.Comandas.Add(ComandaAtual);
+            }
+        }
 
+        public void RemoverProduto(ItemPedido item)
+        {
+            ComandaAtual.Itens.Remove(item);
         }
 
         public void Finalizar()

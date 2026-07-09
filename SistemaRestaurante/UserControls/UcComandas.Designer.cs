@@ -146,6 +146,7 @@
             dgvComandas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvComandas.Size = new Size(958, 472);
             dgvComandas.TabIndex = 1;
+            dgvComandas.CellDoubleClick += dgvComandas_CellDoubleClick;
             // 
             // colNumeroComanda
             // 

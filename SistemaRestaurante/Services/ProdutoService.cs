@@ -1,6 +1,7 @@
 ﻿using SistemaRestaurante.Data;
 using SistemaRestaurante.Models;
 using SistemaRestaurante.UserControls;
+using SistemaRestaurante.Validations;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,30 +10,23 @@ namespace SistemaRestaurante.Services
 {
     public class ProdutoService
     {
-        public void Cadastrar(string nome, string categoria, decimal preco)
+        public void Cadastrar(Produto produto)
         {
-            int id = 1;
-            if (BancoFake.Produtos.Count > 0)
-            {
-                id = BancoFake.Produtos.Max(p => p.Id) + 1;
-            }
-
-            Produto produto = new Produto(id, nome, categoria, preco);
             BancoFake.Produtos.Add(produto);
         }
 
-        public void Editar(int id, string nome, string categoria, decimal preco)
+        public void Editar(int id, Produto produtoEdit)
         {
-            Produto produtoEdit = BancoFake.Produtos.FirstOrDefault(p => p.Id == id);
+            Produto produtoSelecionado = BancoFake.Produtos.FirstOrDefault(p => p.Id == id);
 
-            if (produtoEdit == null)
+            if (produtoSelecionado == null)
             {
                 MessageBox.Show("error editar");
             }
 
-            produtoEdit.Nome = nome;
-            produtoEdit.Categoria = categoria;
-            produtoEdit.Preco = preco;
+            produtoSelecionado.Nome = produtoEdit.Nome;
+            produtoSelecionado.Categoria = produtoEdit.Categoria;
+            produtoSelecionado.Preco = produtoEdit.Preco;
 
             MessageBox.Show("Produto Atualizado");
         }

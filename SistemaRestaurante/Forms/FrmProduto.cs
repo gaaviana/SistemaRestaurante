@@ -1,5 +1,6 @@
 ﻿using SistemaRestaurante.Models;
 using SistemaRestaurante.Services;
+using SistemaRestaurante.Validations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ namespace SistemaRestaurante.Forms
     public partial class FrmProduto : Form
     {
         ProdutoService produtoService = new ProdutoService();
-        private Produto produtoEdit;
+        private Produto produtoSelecionado;
         public FrmProduto()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace SistemaRestaurante.Forms
         {
             InitializeComponent();
 
-            produtoEdit = produto;
+            produtoSelecionado = produto;
             
             CarregarProdutoEdit();
         }
@@ -31,9 +32,9 @@ namespace SistemaRestaurante.Forms
         {
             lblTitulo.Text = "Atuzalizar Produto";
             btnSalvar.Text = "Atualizar";
-            txtNome.Text = produtoEdit.Nome;
-            cbCategoria.Text = produtoEdit.Categoria;
-            txtPreco.Text = produtoEdit.Preco.ToString();
+            txtNome.Text = produtoSelecionado.Nome;
+            cbCategoria.Text = produtoSelecionado.Categoria;
+            txtPreco.Text = produtoSelecionado.Preco.ToString();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -44,24 +45,39 @@ namespace SistemaRestaurante.Forms
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            string nome = txtNome.Text;
-            string categoria = cbCategoria.Text;
-            decimal preco = decimal.Parse(txtPreco.Text);
+            decimal? preco = decimal.TryParse(txtPreco.Text, out decimal precoConvertido) ? precoConvertido : (decimal?)null;
 
-            if (produtoEdit == null)
+            Produto produto = new Produto(txtNome.Text, cbCategoria.Text, preco);
+
+            List<string> erros = ProdutoValidation.Validar(produto);
+            
+            if (erros.Any())
             {
+                MessageBox.Show(string.Join("\n", erros), "Erros de Validação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                produtoService.Cadastrar(nome, categoria, preco);
+            if (produtoSelecionado == null)
+            {
+                produtoService.Cadastrar(produto);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
             {
-                produtoService.Editar(produtoEdit.Id, nome, categoria, preco);
+                Produto produtoEdit = new Produto(produto.Nome, produto.Categoria, produto.Preco);
+                erros = ProdutoValidation.Validar(produto);
+
+                if (erros.Any())
+                {
+                    MessageBox.Show(string.Join("\n", erros), "Erros de Validação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                produtoService.Editar(produtoSelecionado.Id, produtoEdit);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
-           
         }
 
     }

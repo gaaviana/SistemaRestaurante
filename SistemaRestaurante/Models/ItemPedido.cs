@@ -8,10 +8,10 @@ namespace SistemaRestaurante.Models
     {
         public Produto Produto { get; set; }
         public int Quantidade { get; set; }
-        public decimal Subtotal { get { return Produto.Preco * Quantidade;} }
+        public decimal Subtotal { get { return Produto.Preco * Quantidade ?? 0;} }
 
         public string NomeProduto => Produto.Nome;
-        public decimal Preco => Produto.Preco;
+        public decimal Preco => Produto.Preco ?? 0;
         public ItemPedido(Produto produto, int qtd)
         {
             

@@ -1,4 +1,6 @@
 ﻿using SistemaRestaurante.Data;
+using SistemaRestaurante.Models;
+using SistemaRestaurante.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,10 +21,22 @@ namespace SistemaRestaurante.UserControls
         }
 
         public event Action NovoPedido;
+        public event Action<Comanda> AbrirComanda;
 
         private void btnNovoPedido_Click(object sender, EventArgs e)
         {
             NovoPedido?.Invoke();
         }
+
+        private void dgvComandas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            Comanda comanda = (Comanda)dgvComandas.Rows[e.RowIndex].DataBoundItem;
+
+            AbrirComanda?.Invoke(comanda);
+
+        }
+
     }
 }

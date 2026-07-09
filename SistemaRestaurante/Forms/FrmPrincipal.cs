@@ -1,65 +1,76 @@
+using SistemaRestaurante.Models;
+using SistemaRestaurante.Services;
 using SistemaRestaurante.UserControls;
 
 namespace SistemaRestaurante
 {
     public partial class FrmPrincipal : Form
     {
+        private readonly ComandaService comandaService = new ComandaService();
         public FrmPrincipal()
         {
-            InitializeComponent();
+            InitializeComponent();  
             
-            
+        }
+
+        private void AbrirTela(Control Tela)
+        {
+            pnlConteudo.Controls.Clear();
+
+            Tela.Dock = DockStyle.Fill;
+
+            pnlConteudo.Controls.Add(Tela);
         }
 
         private void btnProdutos_Click(object sender, EventArgs e)
         {
-            pnlConteudo.Controls.Clear();
 
             UcProdutos produtos = new UcProdutos();
 
-            produtos.Dock = DockStyle.Fill;
-
-            pnlConteudo.Controls.Add(produtos);
+            AbrirTela(produtos);
         }
         private void btnComandas_Click(object sender, EventArgs e)
         {
             AbrirComandas();
 
-            pnlConteudo.Controls.Clear();
-
             UcComandas comandas = new UcComandas();
 
-            comandas.NovoPedido += AbrirPedido;
+            comandas.NovoPedido += AbrirNovoPedido;
 
-            comandas.Dock = DockStyle.Fill;
-
-            pnlConteudo.Controls.Add(comandas);
+            AbrirTela(comandas);
         }
 
-        private void AbrirPedido()
+        private void AbrirNovoPedido()
         {
-            pnlConteudo.Controls.Clear();
+            comandaService.NovaComanda();
 
-            UcPedido pedido = new UcPedido();
+            UcPedido pedido = new UcPedido(comandaService);
 
             pedido.PedidoSalvo += AbrirComandas;
 
-            pedido.Dock = DockStyle.Fill;
-
-            pnlConteudo.Controls.Add(pedido);
+            AbrirTela(pedido);
         }
 
         private void AbrirComandas()
         {
-            pnlConteudo.Controls.Clear();
 
             UcComandas comandas = new UcComandas();
 
-            comandas.NovoPedido += AbrirPedido;
+            comandas.NovoPedido += AbrirNovoPedido;
+            comandas.AbrirComanda += AbrirComandaExistente;
 
-            comandas.Dock = DockStyle.Fill;
+            AbrirTela(comandas);
+        }
 
-            pnlConteudo.Controls.Add(comandas);
+        private void AbrirComandaExistente(Comanda comanda)
+        {
+            comandaService.AbrirComanda(comanda);
+
+            UcPedido pedido = new UcPedido(comandaService);
+
+            pedido.PedidoSalvo += AbrirComandas;
+
+            AbrirTela(pedido);
         }
 
     }
