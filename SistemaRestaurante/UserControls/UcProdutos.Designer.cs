@@ -197,12 +197,12 @@
             // 
             // tlpHeader
             // 
+            tlpHeader.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tlpHeader.ColumnCount = 2;
             tlpHeader.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
             tlpHeader.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
             tlpHeader.Controls.Add(panelHeaderLeft, 0, 0);
             tlpHeader.Controls.Add(pnlHeaderRigth, 1, 0);
-            tlpHeader.Dock = DockStyle.Fill;
             tlpHeader.Location = new Point(0, 0);
             tlpHeader.Name = "tlpHeader";
             tlpHeader.RowCount = 1;

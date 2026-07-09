@@ -1,6 +1,7 @@
 ﻿using SistemaRestaurante.Data;
 using SistemaRestaurante.Forms;
 using SistemaRestaurante.Models;
+using SistemaRestaurante.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ namespace SistemaRestaurante.UserControls
 {
     public partial class UcProdutos : UserControl
     {
+        ProdutoService produtoService = new ProdutoService();
         public UcProdutos()
         {
             InitializeComponent();
@@ -44,6 +46,13 @@ namespace SistemaRestaurante.UserControls
 
                 FrmProduto frm = new FrmProduto(produto);
                 frm.ShowDialog();
+                AtualizarTabela();
+            }
+
+            if (dgvProdutos.Columns[e.ColumnIndex].Name == "colExcluir")
+            {
+                var id = Convert.ToInt32(dgvProdutos.Rows[e.RowIndex].Cells["colId"].Value);
+                produtoService.Excluir(id);
                 AtualizarTabela();
             }
         }

@@ -23,6 +23,8 @@ namespace SistemaRestaurante
         }
         private void btnComandas_Click(object sender, EventArgs e)
         {
+            AbrirComandas();
+
             pnlConteudo.Controls.Clear();
 
             UcComandas comandas = new UcComandas();
@@ -40,9 +42,24 @@ namespace SistemaRestaurante
 
             UcPedido pedido = new UcPedido();
 
+            pedido.PedidoSalvo += AbrirComandas;
+
             pedido.Dock = DockStyle.Fill;
 
             pnlConteudo.Controls.Add(pedido);
+        }
+
+        private void AbrirComandas()
+        {
+            pnlConteudo.Controls.Clear();
+
+            UcComandas comandas = new UcComandas();
+
+            comandas.NovoPedido += AbrirPedido;
+
+            comandas.Dock = DockStyle.Fill;
+
+            pnlConteudo.Controls.Add(comandas);
         }
 
     }

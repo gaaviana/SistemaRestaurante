@@ -39,7 +39,7 @@
             colNumeroComanda = new DataGridViewTextBoxColumn();
             colTipo = new DataGridViewTextBoxColumn();
             ColTotal = new DataGridViewTextBoxColumn();
-            colHorario = new DataGridViewTextBoxColumn();
+            colStatus = new DataGridViewTextBoxColumn();
             tlpComandas.SuspendLayout();
             pnlHeader.SuspendLayout();
             pnlGrid.SuspendLayout();
@@ -126,7 +126,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvComandas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvComandas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvComandas.Columns.AddRange(new DataGridViewColumn[] { colNumeroComanda, colTipo, ColTotal, colHorario });
+            dgvComandas.Columns.AddRange(new DataGridViewColumn[] { colNumeroComanda, colTipo, ColTotal, colStatus });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -149,27 +149,31 @@
             // 
             // colNumeroComanda
             // 
+            colNumeroComanda.DataPropertyName = "Numero";
             colNumeroComanda.HeaderText = "N°";
             colNumeroComanda.Name = "colNumeroComanda";
             colNumeroComanda.ReadOnly = true;
             // 
             // colTipo
             // 
+            colTipo.DataPropertyName = "Tipo";
             colTipo.HeaderText = "Tipo";
             colTipo.Name = "colTipo";
             colTipo.ReadOnly = true;
             // 
             // ColTotal
             // 
+            ColTotal.DataPropertyName = "Total";
             ColTotal.HeaderText = "Total";
             ColTotal.Name = "ColTotal";
             ColTotal.ReadOnly = true;
             // 
-            // colHorario
+            // colStatus
             // 
-            colHorario.HeaderText = "Horário";
-            colHorario.Name = "colHorario";
-            colHorario.ReadOnly = true;
+            colStatus.DataPropertyName = "Status";
+            colStatus.HeaderText = "Status";
+            colStatus.Name = "colStatus";
+            colStatus.ReadOnly = true;
             // 
             // UcComandas
             // 
@@ -198,6 +202,6 @@
         private DataGridViewTextBoxColumn colNumeroComanda;
         private DataGridViewTextBoxColumn colTipo;
         private DataGridViewTextBoxColumn ColTotal;
-        private DataGridViewTextBoxColumn colHorario;
+        private DataGridViewTextBoxColumn colStatus;
     }
 }

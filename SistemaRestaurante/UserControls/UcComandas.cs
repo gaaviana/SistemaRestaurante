@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaRestaurante.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,8 @@ namespace SistemaRestaurante.UserControls
         public UcComandas()
         {
             InitializeComponent();
+            dgvComandas.AutoGenerateColumns = false;
+            dgvComandas.DataSource = BancoFake.Comandas;
         }
 
         public event Action NovoPedido;

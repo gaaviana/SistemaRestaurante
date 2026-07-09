@@ -37,9 +37,22 @@ namespace SistemaRestaurante.Services
             MessageBox.Show("Produto Atualizado");
         }
 
-        public void Excluir()
+        public void Excluir(int id)
         {
+            Produto produtoExcluir = BancoFake.Produtos.FirstOrDefault(p => p.Id == id);
 
+            if (produtoExcluir == null)
+            {
+                MessageBox.Show("error excluir");
+            }
+            else
+            {
+                DialogResult res = MessageBox.Show( "Tem certeza que deseja excluir este produto?", "Confirmar exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (res == DialogResult.Yes)
+                {
+                     BancoFake.Produtos.Remove(produtoExcluir);
+                }
+            }
         }
     }
 }

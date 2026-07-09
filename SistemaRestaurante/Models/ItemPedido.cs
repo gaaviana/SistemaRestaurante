@@ -6,15 +6,20 @@ namespace SistemaRestaurante.Models
 {
     public class ItemPedido
     {
-        public Produto Produto;
-        public int Quantidade;
-        public decimal Subtotal;
+        public Produto Produto { get; set; }
+        public int Quantidade { get; set; }
+        public decimal Subtotal { get { return Produto.Preco * Quantidade;} }
 
-        public ItemPedido(Produto produto, int qtd, decimal subtotal)
+        public string NomeProduto => Produto.Nome;
+        public decimal Preco => Produto.Preco;
+        public ItemPedido(Produto produto, int qtd)
         {
+            
             Produto = produto;
             Quantidade = qtd;
-            Subtotal = subtotal;
+            
         }
+
+       
     }
 }

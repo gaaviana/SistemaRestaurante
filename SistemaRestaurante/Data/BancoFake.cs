@@ -10,8 +10,8 @@ namespace SistemaRestaurante.Data
     {
         public static BindingList<Produto> Produtos = new BindingList<Produto>();
 
-        public static BindingList<Produto> Comandas = new BindingList<Produto>();
+        public static BindingList<Comanda> Comandas = new BindingList<Comanda>();
 
-        public static BindingList<Produto> Pagamentos = new BindingList<Produto>();
+        public static BindingList<Pagamento> Pagamentos = new BindingList<Pagamento>();
     }
 }

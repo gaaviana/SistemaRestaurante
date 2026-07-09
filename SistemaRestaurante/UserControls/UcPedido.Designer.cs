@@ -56,7 +56,7 @@
             lblTipoPedido = new Label();
             rbViagem = new RadioButton();
             rbMesa = new RadioButton();
-            cbMesa = new ComboBox();
+            cbNumero = new ComboBox();
             pnlHeader = new Panel();
             pnlHeaderRigth = new Panel();
             lblNumeroPedido = new Label();
@@ -133,6 +133,7 @@
             btnSalvarPedido.TabIndex = 5;
             btnSalvarPedido.Text = "Salvar Pedido";
             btnSalvarPedido.UseVisualStyleBackColor = false;
+            btnSalvarPedido.Click += btnSalvarPedido_Click;
             // 
             // pnlLeft
             // 
@@ -214,24 +215,28 @@
             // 
             // colProduto
             // 
+            colProduto.DataPropertyName = "NomeProduto";
             colProduto.HeaderText = "Produto";
             colProduto.Name = "colProduto";
             colProduto.ReadOnly = true;
             // 
             // colQuantidade
             // 
+            colQuantidade.DataPropertyName = "Quantidade";
             colQuantidade.HeaderText = "Quantidade";
             colQuantidade.Name = "colQuantidade";
             colQuantidade.ReadOnly = true;
             // 
             // colValorUnitario
             // 
+            colValorUnitario.DataPropertyName = "Preco";
             colValorUnitario.HeaderText = "Valor Unit.";
             colValorUnitario.Name = "colValorUnitario";
             colValorUnitario.ReadOnly = true;
             // 
             // colSubtotal
             // 
+            colSubtotal.DataPropertyName = "Subtotal";
             colSubtotal.HeaderText = "Subtotal";
             colSubtotal.Name = "colSubtotal";
             colSubtotal.ReadOnly = true;
@@ -326,6 +331,7 @@
             btnAdicionarProduto.TabIndex = 4;
             btnAdicionarProduto.Text = "Adicionar Produto";
             btnAdicionarProduto.UseVisualStyleBackColor = false;
+            btnAdicionarProduto.Click += btnAdicionarProduto_Click;
             // 
             // pnlPedido
             // 
@@ -341,7 +347,7 @@
             flowLayoutPanel1.Controls.Add(lblTipoPedido);
             flowLayoutPanel1.Controls.Add(rbViagem);
             flowLayoutPanel1.Controls.Add(rbMesa);
-            flowLayoutPanel1.Controls.Add(cbMesa);
+            flowLayoutPanel1.Controls.Add(cbNumero);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Margin = new Padding(0);
@@ -391,15 +397,14 @@
             rbMesa.TextAlign = ContentAlignment.MiddleCenter;
             rbMesa.UseVisualStyleBackColor = true;
             // 
-            // cbMesa
+            // cbNumero
             // 
-            cbMesa.FormattingEnabled = true;
-            cbMesa.Location = new Point(223, 10);
-            cbMesa.Margin = new Padding(20, 10, 3, 3);
-            cbMesa.Name = "cbMesa";
-            cbMesa.Size = new Size(79, 23);
-            cbMesa.TabIndex = 0;
-            cbMesa.Text = "Mesa:";
+            cbNumero.FormattingEnabled = true;
+            cbNumero.Location = new Point(223, 10);
+            cbNumero.Margin = new Padding(20, 10, 3, 3);
+            cbNumero.Name = "cbNumero";
+            cbNumero.Size = new Size(79, 23);
+            cbNumero.TabIndex = 0;
             // 
             // pnlHeader
             // 
@@ -529,7 +534,7 @@
         private Label lblTipoPedido;
         private RadioButton rbViagem;
         private RadioButton rbMesa;
-        private ComboBox cbMesa;
+        private ComboBox cbNumero;
         private Panel pnlHeader;
         private Panel pnlHeaderRigth;
         private Label lblNumeroPedido;
