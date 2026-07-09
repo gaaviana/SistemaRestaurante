@@ -151,9 +151,9 @@
             lblTotal.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold);
             lblTotal.Location = new Point(153, 8);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(117, 32);
+            lblTotal.Size = new Size(94, 32);
             lblTotal.TabIndex = 0;
-            lblTotal.Text = "R$ 120,00";
+            lblTotal.Text = "R$ 0,00";
             // 
             // lblTxtTotal
             // 

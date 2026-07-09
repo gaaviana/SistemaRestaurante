@@ -10,6 +10,7 @@ namespace SistemaRestaurante.Services
     public class ComandaService
     {
         public BindingList<ItemPedido> Itens = new BindingList<ItemPedido>();
+        public decimal Total { get {  return Itens.Sum(i => i.Subtotal); }  }
         public void CriarComanda(string tipo, int numero, string status)
         {
             int id = 1;

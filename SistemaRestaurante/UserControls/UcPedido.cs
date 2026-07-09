@@ -48,7 +48,7 @@ namespace SistemaRestaurante.UserControls
             string status = "Aberta";
 
             comandaService.CriarComanda(tipo, numero, status);
-
+            comandaService.Itens.Clear();
             PedidoSalvo?.Invoke();
         }
 
@@ -59,6 +59,8 @@ namespace SistemaRestaurante.UserControls
             int quantidade = (int)nudQuantidade.Value;
 
             comandaService.AdicionarProduto(produto, quantidade);
+
+            lblTotal.Text = comandaService.Total.ToString("C");
         }
        
     }
