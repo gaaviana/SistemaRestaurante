@@ -12,8 +12,11 @@ namespace SistemaRestaurante.Services
         public Comanda ComandaAtual { get; private set; }
         public void NovaComanda()
         {
+            int idPedido = BancoFake.Comandas.Count + 1;
+
             ComandaAtual = new Comanda(
                 0,
+                idPedido,
                 "",
                 0,
                 "Aberta",

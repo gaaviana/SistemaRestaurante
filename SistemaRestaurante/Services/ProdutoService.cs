@@ -1,6 +1,7 @@
 ﻿using SistemaRestaurante.Data;
 using SistemaRestaurante.Models;
 using SistemaRestaurante.UserControls;
+using SistemaRestaurante.Utils;
 using SistemaRestaurante.Validations;
 using System;
 using System.Collections.Generic;
@@ -21,14 +22,14 @@ namespace SistemaRestaurante.Services
 
             if (produtoSelecionado == null)
             {
-                MessageBox.Show("error editar");
+                Mensagens.Erro("O produto selecionado não existe");
             }
 
             produtoSelecionado.Nome = produtoEdit.Nome;
             produtoSelecionado.Categoria = produtoEdit.Categoria;
             produtoSelecionado.Preco = produtoEdit.Preco;
 
-            MessageBox.Show("Produto Atualizado");
+            Mensagens.Sucesso("Produto Atualizado");
         }
 
         public void Excluir(int id)
@@ -37,12 +38,12 @@ namespace SistemaRestaurante.Services
 
             if (produtoExcluir == null)
             {
-                MessageBox.Show("error excluir");
+                Mensagens.Erro("O produto selecionado não existe");
             }
             else
             {
-                DialogResult res = MessageBox.Show( "Tem certeza que deseja excluir este produto?", "Confirmar exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (res == DialogResult.Yes)
+                bool res = Mensagens.Confirmacao("Tem certeza que deseja excluir este produto?");
+                if (res == true)
                 {
                      BancoFake.Produtos.Remove(produtoExcluir);
                 }

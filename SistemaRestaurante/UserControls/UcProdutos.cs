@@ -18,6 +18,7 @@ namespace SistemaRestaurante.UserControls
         public UcProdutos()
         {
             InitializeComponent();
+
             dgvProdutos.AutoGenerateColumns = false;
 
             AtualizarTabela();

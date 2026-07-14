@@ -56,6 +56,7 @@
             lblTipoPedido = new Label();
             rbViagem = new RadioButton();
             rbMesa = new RadioButton();
+            lblNumeroMesa_Comanda = new Label();
             cbNumero = new ComboBox();
             pnlHeader = new Panel();
             pnlHeaderRigth = new Panel();
@@ -288,12 +289,15 @@
             // cbProduto
             // 
             cbProduto.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            cbProduto.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbProduto.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbProduto.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbProduto.FormattingEnabled = true;
             cbProduto.Location = new Point(98, 3);
             cbProduto.Name = "cbProduto";
             cbProduto.Size = new Size(607, 29);
             cbProduto.TabIndex = 1;
+            cbProduto.KeyDown += cbProduto_KeyDown;
             // 
             // lblQuantidade
             // 
@@ -347,6 +351,7 @@
             flowLayoutPanel1.Controls.Add(lblTipoPedido);
             flowLayoutPanel1.Controls.Add(rbViagem);
             flowLayoutPanel1.Controls.Add(rbMesa);
+            flowLayoutPanel1.Controls.Add(lblNumeroMesa_Comanda);
             flowLayoutPanel1.Controls.Add(cbNumero);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(0, 0);
@@ -378,7 +383,6 @@
             rbViagem.Name = "rbViagem";
             rbViagem.Size = new Size(70, 30);
             rbViagem.TabIndex = 3;
-            rbViagem.TabStop = true;
             rbViagem.Text = "Viagem";
             rbViagem.TextAlign = ContentAlignment.MiddleCenter;
             rbViagem.UseVisualStyleBackColor = true;
@@ -392,15 +396,26 @@
             rbMesa.Name = "rbMesa";
             rbMesa.Size = new Size(58, 30);
             rbMesa.TabIndex = 2;
-            rbMesa.TabStop = true;
             rbMesa.Text = "Mesa";
             rbMesa.TextAlign = ContentAlignment.MiddleCenter;
             rbMesa.UseVisualStyleBackColor = true;
             // 
+            // lblNumeroMesa_Comanda
+            // 
+            lblNumeroMesa_Comanda.AutoSize = true;
+            lblNumeroMesa_Comanda.Dock = DockStyle.Fill;
+            lblNumeroMesa_Comanda.Location = new Point(206, 0);
+            lblNumeroMesa_Comanda.Name = "lblNumeroMesa_Comanda";
+            lblNumeroMesa_Comanda.Padding = new Padding(20, 0, 0, 0);
+            lblNumeroMesa_Comanda.Size = new Size(57, 36);
+            lblNumeroMesa_Comanda.TabIndex = 4;
+            lblNumeroMesa_Comanda.Text = "Num.";
+            lblNumeroMesa_Comanda.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // cbNumero
             // 
             cbNumero.FormattingEnabled = true;
-            cbNumero.Location = new Point(223, 10);
+            cbNumero.Location = new Point(286, 10);
             cbNumero.Margin = new Padding(20, 10, 3, 3);
             cbNumero.Name = "cbNumero";
             cbNumero.Size = new Size(79, 23);
@@ -432,11 +447,10 @@
             lblNumeroPedido.AutoSize = true;
             lblNumeroPedido.Dock = DockStyle.Right;
             lblNumeroPedido.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblNumeroPedido.Location = new Point(67, 20);
+            lblNumeroPedido.Location = new Point(173, 20);
             lblNumeroPedido.Name = "lblNumeroPedido";
-            lblNumeroPedido.Size = new Size(106, 21);
+            lblNumeroPedido.Size = new Size(0, 21);
             lblNumeroPedido.TabIndex = 0;
-            lblNumeroPedido.Text = "Pedido #0001";
             // 
             // pnlHeaderLeft
             // 
@@ -547,5 +561,6 @@
         private DataGridViewTextBoxColumn colValorUnitario;
         private DataGridViewTextBoxColumn colSubtotal;
         private DataGridViewButtonColumn colRemover;
+        private Label lblNumeroMesa_Comanda;
     }
 }

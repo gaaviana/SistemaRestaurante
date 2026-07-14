@@ -33,11 +33,6 @@ namespace SistemaRestaurante
         {
             AbrirComandas();
 
-            UcComandas comandas = new UcComandas();
-
-            comandas.NovoPedido += AbrirNovoPedido;
-
-            AbrirTela(comandas);
         }
 
         private void AbrirNovoPedido()
@@ -60,6 +55,7 @@ namespace SistemaRestaurante
             comandas.AbrirComanda += AbrirComandaExistente;
 
             AbrirTela(comandas);
+
         }
 
         private void AbrirComandaExistente(Comanda comanda)

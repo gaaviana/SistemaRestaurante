@@ -2,6 +2,8 @@
 using SistemaRestaurante.Forms;
 using SistemaRestaurante.Models;
 using SistemaRestaurante.Services;
+using SistemaRestaurante.Utils;
+using SistemaRestaurante.Validations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +27,7 @@ namespace SistemaRestaurante.UserControls
             dgvProdutos.AutoGenerateColumns = false;
 
             CarregarCb();
+            CarregarComanda();
 
             if (comandaService.ComandaAtual != null)
             {
@@ -36,28 +39,47 @@ namespace SistemaRestaurante.UserControls
             AtualizarTela();
         }
 
-        private void AtualizarTela()
+        private void CarregarComanda() // carrega informações de tipo e numero da camanda
         {
-            dgvProdutos.DataSource = null;
-            dgvProdutos.DataSource = comandaService.ComandaAtual.Itens;
-
-            lblTotal.Text = comandaService.ComandaAtual.Total.ToString("C");
-
             cbNumero.Text = comandaService.ComandaAtual.Numero == 0
                 ? ""
                 : comandaService.ComandaAtual.Numero.ToString();
 
             rbMesa.Checked = comandaService.ComandaAtual.Tipo == "Mesa";
             rbViagem.Checked = comandaService.ComandaAtual.Tipo == "Viagem";
+
+            int idPedido = comandaService.ComandaAtual.IdPedido;
+
+            lblNumeroPedido.Text = $"Pedido #{idPedido:D2}";
+        }
+        private void AtualizarTela() // atualiza itens e valor da comanda atual
+        {
+            dgvProdutos.DataSource = null;
+            dgvProdutos.DataSource = comandaService.ComandaAtual.Itens;
+
+            lblTotal.Text = comandaService.ComandaAtual.Total.ToString("C");
         }
 
-        private void CarregarCb()
+        private void CarregarCb() // lista de produtos
         {
             cbProduto.DataSource = BancoFake.Produtos;
             cbProduto.DisplayMember = "Nome";
             cbProduto.ValueMember = "Id";
+
+            cbProduto.SelectedIndex = -1;
+            cbProduto.Text = "";
         }
-        private void CarregarItens()
+        private void cbProduto_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                nudQuantidade.Focus();
+                nudQuantidade.Select(0, nudQuantidade.Text.Length);
+
+                e.SuppressKeyPress = true;
+            }
+        }
+        private void CarregarItens() // itens da comanda que foi aberta
         {
             dgvProdutos.DataSource = comandaService.ComandaAtual;
         }
@@ -70,13 +92,16 @@ namespace SistemaRestaurante.UserControls
         public event Action PedidoSalvo;
         private void btnSalvarPedido_Click(object sender, EventArgs e)
         {
-            comandaService.ComandaAtual.Tipo =
-                rbMesa.Checked ? "Mesa" : "Viagem";
+            comandaService.ComandaAtual.Tipo = rbMesa.Checked ? "Mesa" : rbViagem.Checked ? "Viagem" : null;
 
-            comandaService.ComandaAtual.Numero =
-                int.Parse(cbNumero.Text);
+            comandaService.ComandaAtual.Numero = int.TryParse(cbNumero.Text, out int numConvertido) ? numConvertido : (int?)null;
 
             comandaService.ComandaAtual.Status = "Aberta";
+
+            if (!ComandaValidation.Validar(comandaService.ComandaAtual))
+            {
+                return;
+            }
 
             comandaService.SalvarComanda();
 
@@ -89,10 +114,15 @@ namespace SistemaRestaurante.UserControls
             Produto produto = (Produto)cbProduto.SelectedItem;
             int quantidade = (int)nudQuantidade.Value;
 
+            if (!ProdutoValidation.ProdutoSelecionado(produto, quantidade))
+            {
+                return;
+            }
+
             comandaService.AdicionarProduto(produto, quantidade);
 
             AtualizarTela();
         }
-       
+
     }
 }

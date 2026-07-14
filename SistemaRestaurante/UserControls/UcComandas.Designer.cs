@@ -36,8 +36,8 @@
             pnlHeader = new Panel();
             pnlGrid = new Panel();
             dgvComandas = new DataGridView();
-            colNumeroComanda = new DataGridViewTextBoxColumn();
             colTipo = new DataGridViewTextBoxColumn();
+            colNumeroComanda = new DataGridViewTextBoxColumn();
             ColTotal = new DataGridViewTextBoxColumn();
             colStatus = new DataGridViewTextBoxColumn();
             tlpComandas.SuspendLayout();
@@ -126,7 +126,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvComandas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvComandas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvComandas.Columns.AddRange(new DataGridViewColumn[] { colNumeroComanda, colTipo, ColTotal, colStatus });
+            dgvComandas.Columns.AddRange(new DataGridViewColumn[] { colTipo, colNumeroComanda, ColTotal, colStatus });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -143,17 +143,10 @@
             dgvComandas.Name = "dgvComandas";
             dgvComandas.ReadOnly = true;
             dgvComandas.RowHeadersVisible = false;
-            dgvComandas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvComandas.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dgvComandas.Size = new Size(958, 472);
             dgvComandas.TabIndex = 1;
             dgvComandas.CellDoubleClick += dgvComandas_CellDoubleClick;
-            // 
-            // colNumeroComanda
-            // 
-            colNumeroComanda.DataPropertyName = "Numero";
-            colNumeroComanda.HeaderText = "N°";
-            colNumeroComanda.Name = "colNumeroComanda";
-            colNumeroComanda.ReadOnly = true;
             // 
             // colTipo
             // 
@@ -161,6 +154,13 @@
             colTipo.HeaderText = "Tipo";
             colTipo.Name = "colTipo";
             colTipo.ReadOnly = true;
+            // 
+            // colNumeroComanda
+            // 
+            colNumeroComanda.DataPropertyName = "Numero";
+            colNumeroComanda.HeaderText = "N°";
+            colNumeroComanda.Name = "colNumeroComanda";
+            colNumeroComanda.ReadOnly = true;
             // 
             // ColTotal
             // 
@@ -200,8 +200,8 @@
         private Panel pnlHeader;
         private Panel pnlGrid;
         private DataGridView dgvComandas;
-        private DataGridViewTextBoxColumn colNumeroComanda;
         private DataGridViewTextBoxColumn colTipo;
+        private DataGridViewTextBoxColumn colNumeroComanda;
         private DataGridViewTextBoxColumn ColTotal;
         private DataGridViewTextBoxColumn colStatus;
     }

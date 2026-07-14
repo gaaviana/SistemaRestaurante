@@ -1,30 +1,54 @@
 ﻿using SistemaRestaurante.Models;
+using SistemaRestaurante.Utils;
 using System.Collections.Generic;
 
 namespace SistemaRestaurante.Validations
 {
     public class ProdutoValidation
     {
-        public static List<string> Validar(Produto produto)
+        public static bool Validar(Produto produto)
         {
-            List<string> erros = new List<string>();
-
             if (string.IsNullOrWhiteSpace(produto.Nome))
-                erros.Add("O nome do produto é obrigatório.");
+            {
+                Mensagens.Erro("O nome do produto é obrigatório.");
+                return false;
+            }
 
             if (string.IsNullOrWhiteSpace(produto.Categoria))
-                erros.Add("Selecione uma categoria.");
+            {
+                Mensagens.Erro("Selecione uma categoria");
+                return false;
+            }
 
             if (produto.Preco == null)
             {
-                erros.Add("O preço deve ser um número válido (ex: 10,50).");
+                Mensagens.Erro("O preço deve ser um número válido (ex: 10,50).");
+                return false;
             }
             else if (produto.Preco <= 0)
             {
-                erros.Add("O preço deve ser maior que zero.");
+                Mensagens.Erro("O preço deve ser maior que zero.");
+                return false;
             }
 
-            return erros;
+            return true;
+        }
+
+        public static bool ProdutoSelecionado(Produto produto, int qtd)
+        {
+            if (produto == null)
+            {
+                Mensagens.Erro("Selecione um produto");
+                return false;
+            }
+
+            if (qtd <= 0)
+            {
+                Mensagens.Erro("Informe a quantidade");
+                return false;
+            }
+
+            return true;
         }
     }
 }

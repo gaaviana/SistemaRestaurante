@@ -49,35 +49,19 @@ namespace SistemaRestaurante.Forms
 
             Produto produto = new Produto(txtNome.Text, cbCategoria.Text, preco);
 
-            List<string> erros = ProdutoValidation.Validar(produto);
-            
-            if (erros.Any())
-            {
-                MessageBox.Show(string.Join("\n", erros), "Erros de Validação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if(!ProdutoValidation.Validar(produto))
                 return;
-            }
 
             if (produtoSelecionado == null)
             {
                 produtoService.Cadastrar(produto);
-                this.DialogResult = DialogResult.OK;
-                this.Close();
             }
             else
             {
-                Produto produtoEdit = new Produto(produto.Nome, produto.Categoria, produto.Preco);
-                erros = ProdutoValidation.Validar(produto);
-
-                if (erros.Any())
-                {
-                    MessageBox.Show(string.Join("\n", erros), "Erros de Validação", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                produtoService.Editar(produtoSelecionado.Id, produtoEdit);
+                produtoService.Editar(produtoSelecionado.Id, produto);
+            }
                 this.DialogResult = DialogResult.OK;
                 this.Close();
-            }
         }
 
     }
