@@ -108,6 +108,21 @@ namespace SistemaRestaurante.UserControls
             PedidoSalvo?.Invoke();
         }
 
+        public event Action PedidoCancelado;
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(
+                "Deseja cancelar as alterações?",
+                "Cancelar",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                comandaService.Cancelar();
+
+                PedidoCancelado?.Invoke();
+            }
+        }
+
 
         private void btnAdicionarProduto_Click(object sender, EventArgs e)
         {
@@ -120,8 +135,22 @@ namespace SistemaRestaurante.UserControls
             }
 
             comandaService.AdicionarProduto(produto, quantidade);
-
             AtualizarTela();
+        }
+
+        private void dgvProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            if (dgvProdutos.Columns[e.ColumnIndex].Name == "colRemover")
+            {
+                ItemPedido item = (ItemPedido)dgvProdutos.Rows[e.RowIndex].DataBoundItem;
+
+                comandaService.RemoverProduto(item);
+                AtualizarTela();
+            }
         }
 
     }

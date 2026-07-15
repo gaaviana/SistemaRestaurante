@@ -42,6 +42,7 @@ namespace SistemaRestaurante
             UcPedido pedido = new UcPedido(comandaService);
 
             pedido.PedidoSalvo += AbrirComandas;
+            pedido.PedidoCancelado += AbrirComandas;
 
             AbrirTela(pedido);
         }
@@ -65,6 +66,7 @@ namespace SistemaRestaurante
             UcPedido pedido = new UcPedido(comandaService);
 
             pedido.PedidoSalvo += AbrirComandas;
+            pedido.PedidoCancelado += AbrirComandas;
 
             AbrirTela(pedido);
         }

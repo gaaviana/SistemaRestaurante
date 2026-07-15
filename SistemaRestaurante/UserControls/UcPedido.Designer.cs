@@ -32,6 +32,7 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pnlFooter = new Panel();
             pnlRigth = new Panel();
+            btnCancelar = new Button();
             btnFinalizarPedido = new Button();
             btnSalvarPedido = new Button();
             pnlLeft = new Panel();
@@ -92,13 +93,32 @@
             // 
             // pnlRigth
             // 
+            pnlRigth.Controls.Add(btnCancelar);
             pnlRigth.Controls.Add(btnFinalizarPedido);
             pnlRigth.Controls.Add(btnSalvarPedido);
             pnlRigth.Dock = DockStyle.Right;
-            pnlRigth.Location = new Point(587, 0);
+            pnlRigth.Location = new Point(437, 0);
             pnlRigth.Name = "pnlRigth";
-            pnlRigth.Size = new Size(371, 48);
+            pnlRigth.Size = new Size(521, 48);
             pnlRigth.TabIndex = 8;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.BackColor = Color.Transparent;
+            btnCancelar.Cursor = Cursors.Hand;
+            btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            btnCancelar.ForeColor = Color.IndianRed;
+            btnCancelar.Location = new Point(134, 11);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.RightToLeft = RightToLeft.Yes;
+            btnCancelar.Size = new Size(64, 29);
+            btnCancelar.TabIndex = 7;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnFinalizarPedido
             // 
@@ -109,7 +129,7 @@
             btnFinalizarPedido.FlatStyle = FlatStyle.Flat;
             btnFinalizarPedido.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnFinalizarPedido.ForeColor = Color.White;
-            btnFinalizarPedido.Location = new Point(204, 11);
+            btnFinalizarPedido.Location = new Point(360, 11);
             btnFinalizarPedido.Name = "btnFinalizarPedido";
             btnFinalizarPedido.Size = new Size(150, 29);
             btnFinalizarPedido.TabIndex = 6;
@@ -127,7 +147,7 @@
             btnSalvarPedido.FlatStyle = FlatStyle.Flat;
             btnSalvarPedido.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalvarPedido.ForeColor = Color.FromArgb(30, 41, 59);
-            btnSalvarPedido.Location = new Point(48, 11);
+            btnSalvarPedido.Location = new Point(204, 11);
             btnSalvarPedido.Name = "btnSalvarPedido";
             btnSalvarPedido.RightToLeft = RightToLeft.Yes;
             btnSalvarPedido.Size = new Size(150, 29);
@@ -213,6 +233,7 @@
             dgvProdutos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvProdutos.Size = new Size(958, 312);
             dgvProdutos.TabIndex = 1;
+            dgvProdutos.CellContentClick += dgvProdutos_CellContentClick;
             // 
             // colProduto
             // 
@@ -562,5 +583,6 @@
         private DataGridViewTextBoxColumn colSubtotal;
         private DataGridViewButtonColumn colRemover;
         private Label lblNumeroMesa_Comanda;
+        private Button btnCancelar;
     }
 }

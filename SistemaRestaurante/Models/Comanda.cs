@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace SistemaRestaurante.Models
@@ -12,10 +13,10 @@ namespace SistemaRestaurante.Models
             public string Tipo { get; set; } 
             public int? Numero { get; set; }
             public string Status { get; set; } 
-            public List<ItemPedido> Itens { get; set; } = new List<ItemPedido>();
+            public BindingList<ItemPedido> Itens { get; set; } = new BindingList<ItemPedido>();
             public decimal Total { get { return Itens.Sum(i => i.Subtotal); } }
         
-        public Comanda(int id, int idPedido, string tipo, int? numero, string staus, List<ItemPedido> itens)
+        public Comanda(int id, int idPedido, string tipo, int? numero, string staus, BindingList<ItemPedido> itens)
         {
             Id = id; 
             IdPedido = idPedido;
@@ -23,6 +24,21 @@ namespace SistemaRestaurante.Models
             Numero = numero; 
             Status = staus;
             Itens = itens;
+        }
+
+        public Comanda(Comanda outra)
+        {
+            Id = outra.Id;
+            Tipo = outra.Tipo;
+            Numero = outra.Numero;
+            Status = outra.Status;
+
+            Itens = new BindingList<ItemPedido>();
+
+            foreach (var item in outra.Itens)
+            {
+                Itens.Add(new ItemPedido(item));
+            }
         }
     }
 }

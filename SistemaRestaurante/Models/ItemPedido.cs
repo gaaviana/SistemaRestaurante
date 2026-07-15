@@ -19,7 +19,10 @@ namespace SistemaRestaurante.Models
             Quantidade = qtd;
             
         }
-
-       
+        public ItemPedido(ItemPedido outro)
+        {
+            Produto = outro.Produto;
+            Quantidade = outro.Quantidade;
+        }
     }
 }
