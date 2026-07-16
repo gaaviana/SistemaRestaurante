@@ -10,7 +10,7 @@ namespace SistemaRestaurante.Services
     public class ComandaService
     {
         public Comanda ComandaAtual { get; private set; }
-        private Comanda ComandaOriginal;
+        public Comanda ComandaOriginal;
         public void NovaComanda()
         {
             ComandaOriginal = null;
@@ -69,8 +69,12 @@ namespace SistemaRestaurante.Services
             ComandaAtual = null;
             ComandaOriginal = null;
         }
-
-
+        public List<Comanda> ComandasAbertas()
+        {
+            return BancoFake.Comandas
+                .Where(x => x.Status == "Aberta")
+                .ToList();
+        }
         public void Finalizar()
         {
 

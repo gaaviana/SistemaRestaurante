@@ -308,6 +308,7 @@
             btnCaixa.Text = "Caixa";
             btnCaixa.TextAlign = ContentAlignment.MiddleLeft;
             btnCaixa.UseVisualStyleBackColor = true;
+            btnCaixa.Click += btnCaixa_Click;
             // 
             // btnRelatorios
             // 

@@ -9,8 +9,8 @@ namespace SistemaRestaurante
         private readonly ComandaService comandaService = new ComandaService();
         public FrmPrincipal()
         {
-            InitializeComponent();  
-            
+            InitializeComponent();
+
         }
 
         private void AbrirTela(Control Tela)
@@ -33,6 +33,11 @@ namespace SistemaRestaurante
         {
             AbrirComandas();
 
+        }
+        private void btnCaixa_Click(object sender, EventArgs e)
+        {
+            UcCaixa caixa = new UcCaixa();
+            AbrirTela (caixa);
         }
 
         private void AbrirNovoPedido()

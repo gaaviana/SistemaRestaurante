@@ -13,12 +13,21 @@ namespace SistemaRestaurante.UserControls
 {
     public partial class UcComandas : UserControl
     {
+        private ComandaService comandaService = new ComandaService();
         public UcComandas()
         {
             InitializeComponent();
             dgvComandas.AutoGenerateColumns = false;
-            dgvComandas.DataSource = BancoFake.Comandas;
+
+            AtualizarTabela();
         }
+
+        public void AtualizarTabela()
+        {
+            dgvComandas.DataSource = null;
+            dgvComandas.DataSource = comandaService.ComandasAbertas(); 
+        }
+
 
         public event Action NovoPedido;
         public event Action<Comanda> AbrirComanda;

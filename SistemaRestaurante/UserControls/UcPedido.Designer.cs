@@ -32,9 +32,10 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pnlFooter = new Panel();
             pnlRigth = new Panel();
-            btnCancelar = new Button();
+            flwRight = new FlowLayoutPanel();
             btnFinalizarPedido = new Button();
             btnSalvarPedido = new Button();
+            btnCancelar = new Button();
             pnlLeft = new Panel();
             lblTotal = new Label();
             lblTxtTotal = new Label();
@@ -67,6 +68,7 @@
             tlpUcPedidos = new TableLayoutPanel();
             pnlFooter.SuspendLayout();
             pnlRigth.SuspendLayout();
+            flwRight.SuspendLayout();
             pnlLeft.SuspendLayout();
             pnlGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProdutos).BeginInit();
@@ -93,32 +95,25 @@
             // 
             // pnlRigth
             // 
-            pnlRigth.Controls.Add(btnCancelar);
-            pnlRigth.Controls.Add(btnFinalizarPedido);
-            pnlRigth.Controls.Add(btnSalvarPedido);
+            pnlRigth.Controls.Add(flwRight);
             pnlRigth.Dock = DockStyle.Right;
-            pnlRigth.Location = new Point(437, 0);
+            pnlRigth.Location = new Point(551, 0);
             pnlRigth.Name = "pnlRigth";
-            pnlRigth.Size = new Size(521, 48);
+            pnlRigth.Size = new Size(407, 48);
             pnlRigth.TabIndex = 8;
             // 
-            // btnCancelar
+            // flwRight
             // 
-            btnCancelar.BackColor = Color.Transparent;
-            btnCancelar.Cursor = Cursors.Hand;
-            btnCancelar.FlatAppearance.BorderSize = 0;
-            btnCancelar.FlatAppearance.MouseOverBackColor = Color.Transparent;
-            btnCancelar.FlatStyle = FlatStyle.Flat;
-            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
-            btnCancelar.ForeColor = Color.IndianRed;
-            btnCancelar.Location = new Point(134, 11);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.RightToLeft = RightToLeft.Yes;
-            btnCancelar.Size = new Size(64, 29);
-            btnCancelar.TabIndex = 7;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = false;
-            btnCancelar.Click += btnCancelar_Click;
+            flwRight.Controls.Add(btnFinalizarPedido);
+            flwRight.Controls.Add(btnSalvarPedido);
+            flwRight.Controls.Add(btnCancelar);
+            flwRight.Dock = DockStyle.Fill;
+            flwRight.FlowDirection = FlowDirection.RightToLeft;
+            flwRight.Location = new Point(0, 0);
+            flwRight.Name = "flwRight";
+            flwRight.Padding = new Padding(0, 7, 0, 0);
+            flwRight.Size = new Size(407, 48);
+            flwRight.TabIndex = 8;
             // 
             // btnFinalizarPedido
             // 
@@ -129,7 +124,7 @@
             btnFinalizarPedido.FlatStyle = FlatStyle.Flat;
             btnFinalizarPedido.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnFinalizarPedido.ForeColor = Color.White;
-            btnFinalizarPedido.Location = new Point(360, 11);
+            btnFinalizarPedido.Location = new Point(254, 10);
             btnFinalizarPedido.Name = "btnFinalizarPedido";
             btnFinalizarPedido.Size = new Size(150, 29);
             btnFinalizarPedido.TabIndex = 6;
@@ -147,7 +142,7 @@
             btnSalvarPedido.FlatStyle = FlatStyle.Flat;
             btnSalvarPedido.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalvarPedido.ForeColor = Color.FromArgb(30, 41, 59);
-            btnSalvarPedido.Location = new Point(204, 11);
+            btnSalvarPedido.Location = new Point(98, 10);
             btnSalvarPedido.Name = "btnSalvarPedido";
             btnSalvarPedido.RightToLeft = RightToLeft.Yes;
             btnSalvarPedido.Size = new Size(150, 29);
@@ -156,6 +151,24 @@
             btnSalvarPedido.UseVisualStyleBackColor = false;
             btnSalvarPedido.Click += btnSalvarPedido_Click;
             // 
+            // btnCancelar
+            // 
+            btnCancelar.BackColor = Color.Transparent;
+            btnCancelar.Cursor = Cursors.Hand;
+            btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.FlatAppearance.MouseOverBackColor = Color.Transparent;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point, 0);
+            btnCancelar.ForeColor = Color.IndianRed;
+            btnCancelar.Location = new Point(28, 10);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.RightToLeft = RightToLeft.Yes;
+            btnCancelar.Size = new Size(64, 29);
+            btnCancelar.TabIndex = 7;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Click += btnCancelar_Click;
+            // 
             // pnlLeft
             // 
             pnlLeft.Controls.Add(lblTotal);
@@ -163,7 +176,7 @@
             pnlLeft.Dock = DockStyle.Left;
             pnlLeft.Location = new Point(0, 0);
             pnlLeft.Name = "pnlLeft";
-            pnlLeft.Size = new Size(291, 48);
+            pnlLeft.Size = new Size(487, 48);
             pnlLeft.TabIndex = 7;
             // 
             // lblTotal
@@ -527,6 +540,7 @@
             Size = new Size(984, 551);
             pnlFooter.ResumeLayout(false);
             pnlRigth.ResumeLayout(false);
+            flwRight.ResumeLayout(false);
             pnlLeft.ResumeLayout(false);
             pnlLeft.PerformLayout();
             pnlGrid.ResumeLayout(false);
@@ -584,5 +598,6 @@
         private DataGridViewButtonColumn colRemover;
         private Label lblNumeroMesa_Comanda;
         private Button btnCancelar;
+        private FlowLayoutPanel flwRight;
     }
 }

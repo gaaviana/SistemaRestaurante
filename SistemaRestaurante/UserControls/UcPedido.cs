@@ -50,7 +50,7 @@ namespace SistemaRestaurante.UserControls
 
             int idPedido = comandaService.ComandaAtual.IdPedido;
 
-            lblNumeroPedido.Text = $"Pedido #{idPedido:D2}";
+            lblNumeroPedido.Text = $"Pedido #{idPedido:D4}";
         }
         private void AtualizarTela() // atualiza itens e valor da comanda atual
         {
@@ -58,6 +58,8 @@ namespace SistemaRestaurante.UserControls
             dgvProdutos.DataSource = comandaService.ComandaAtual.Itens;
 
             lblTotal.Text = comandaService.ComandaAtual.Total.ToString("C");
+
+            btnFinalizarPedido.Visible = comandaService.ComandaAtual.Id > 0 && comandaService.ComandaAtual.Itens.Count > 0;
         }
 
         private void CarregarCb() // lista de produtos
@@ -85,8 +87,12 @@ namespace SistemaRestaurante.UserControls
         }
         private void btnFinalizarPedido_Click(object sender, EventArgs e)
         {
-            FrmPagamento frm = new FrmPagamento();
-            frm.ShowDialog();
+            FrmPagamento frm = new FrmPagamento(comandaService);
+
+            if(frm.ShowDialog() == DialogResult.OK)
+            {
+                PedidoSalvo?.Invoke();
+            }
         }
 
         public event Action PedidoSalvo;
@@ -97,6 +103,7 @@ namespace SistemaRestaurante.UserControls
             comandaService.ComandaAtual.Numero = int.TryParse(cbNumero.Text, out int numConvertido) ? numConvertido : (int?)null;
 
             comandaService.ComandaAtual.Status = "Aberta";
+
 
             if (!ComandaValidation.Validar(comandaService.ComandaAtual))
             {
@@ -111,11 +118,7 @@ namespace SistemaRestaurante.UserControls
         public event Action PedidoCancelado;
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(
-                "Deseja cancelar as alterações?",
-                "Cancelar",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question) == DialogResult.Yes)
+            if (Mensagens.Confirmacao("Deseja cancelar as alterações?") == true)
             {
                 comandaService.Cancelar();
 

@@ -38,10 +38,8 @@
             lblPedido = new Label();
             lblTipoPedido = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
-            rbDinheiro = new RadioButton();
-            rbPix = new RadioButton();
-            rbCartaoDebito = new RadioButton();
-            rbCartaoCredito = new RadioButton();
+            lblFormaDePagamento = new Label();
+            cbPagmento = new ComboBox();
             pnlPagamentoDinheiro = new Panel();
             lblValorRecebido = new Label();
             txtValorRecebido = new TextBox();
@@ -175,10 +173,8 @@
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.Controls.Add(rbDinheiro);
-            flowLayoutPanel1.Controls.Add(rbPix);
-            flowLayoutPanel1.Controls.Add(rbCartaoDebito);
-            flowLayoutPanel1.Controls.Add(rbCartaoCredito);
+            flowLayoutPanel1.Controls.Add(lblFormaDePagamento);
+            flowLayoutPanel1.Controls.Add(cbPagmento);
             flowLayoutPanel1.Controls.Add(pnlPagamentoDinheiro);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.FlowDirection = FlowDirection.TopDown;
@@ -187,53 +183,24 @@
             flowLayoutPanel1.Size = new Size(478, 264);
             flowLayoutPanel1.TabIndex = 6;
             // 
-            // rbDinheiro
+            // lblFormaDePagamento
             // 
-            rbDinheiro.AutoSize = true;
-            rbDinheiro.Font = new Font("Segoe UI", 12F);
-            rbDinheiro.Location = new Point(3, 3);
-            rbDinheiro.Name = "rbDinheiro";
-            rbDinheiro.Size = new Size(88, 25);
-            rbDinheiro.TabIndex = 5;
-            rbDinheiro.TabStop = true;
-            rbDinheiro.Text = "Dinheiro";
-            rbDinheiro.UseVisualStyleBackColor = true;
+            lblFormaDePagamento.AutoSize = true;
+            lblFormaDePagamento.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblFormaDePagamento.Location = new Point(3, 0);
+            lblFormaDePagamento.Name = "lblFormaDePagamento";
+            lblFormaDePagamento.Size = new Size(152, 21);
+            lblFormaDePagamento.TabIndex = 11;
+            lblFormaDePagamento.Text = "Foma de Pagamento";
             // 
-            // rbPix
+            // cbPagmento
             // 
-            rbPix.AutoSize = true;
-            rbPix.Font = new Font("Segoe UI", 12F);
-            rbPix.Location = new Point(3, 34);
-            rbPix.Name = "rbPix";
-            rbPix.Size = new Size(48, 25);
-            rbPix.TabIndex = 6;
-            rbPix.TabStop = true;
-            rbPix.Text = "Pix";
-            rbPix.UseVisualStyleBackColor = true;
-            // 
-            // rbCartaoDebito
-            // 
-            rbCartaoDebito.AutoSize = true;
-            rbCartaoDebito.Font = new Font("Segoe UI", 12F);
-            rbCartaoDebito.Location = new Point(3, 65);
-            rbCartaoDebito.Name = "rbCartaoDebito";
-            rbCartaoDebito.Size = new Size(124, 25);
-            rbCartaoDebito.TabIndex = 7;
-            rbCartaoDebito.TabStop = true;
-            rbCartaoDebito.Text = "Cartão Débito";
-            rbCartaoDebito.UseVisualStyleBackColor = true;
-            // 
-            // rbCartaoCredito
-            // 
-            rbCartaoCredito.AutoSize = true;
-            rbCartaoCredito.Font = new Font("Segoe UI", 12F);
-            rbCartaoCredito.Location = new Point(3, 96);
-            rbCartaoCredito.Name = "rbCartaoCredito";
-            rbCartaoCredito.Size = new Size(129, 25);
-            rbCartaoCredito.TabIndex = 8;
-            rbCartaoCredito.TabStop = true;
-            rbCartaoCredito.Text = "Cartão Crédito";
-            rbCartaoCredito.UseVisualStyleBackColor = true;
+            cbPagmento.FormattingEnabled = true;
+            cbPagmento.Items.AddRange(new object[] { "Dinheiro", "Pix", "Cartão Débito", "Cartão Crédito" });
+            cbPagmento.Location = new Point(3, 24);
+            cbPagmento.Name = "cbPagmento";
+            cbPagmento.Size = new Size(121, 23);
+            cbPagmento.TabIndex = 10;
             // 
             // pnlPagamentoDinheiro
             // 
@@ -242,9 +209,9 @@
             pnlPagamentoDinheiro.Controls.Add(lblTroco);
             pnlPagamentoDinheiro.Controls.Add(lblValorTroco);
             pnlPagamentoDinheiro.Dock = DockStyle.Fill;
-            pnlPagamentoDinheiro.Location = new Point(3, 127);
+            pnlPagamentoDinheiro.Location = new Point(3, 53);
             pnlPagamentoDinheiro.Name = "pnlPagamentoDinheiro";
-            pnlPagamentoDinheiro.Size = new Size(129, 130);
+            pnlPagamentoDinheiro.Size = new Size(152, 130);
             pnlPagamentoDinheiro.TabIndex = 9;
             // 
             // lblValorRecebido
@@ -329,6 +296,7 @@
             btnConfirmarPagamento.TabIndex = 7;
             btnConfirmarPagamento.Text = "Confirmar";
             btnConfirmarPagamento.UseVisualStyleBackColor = false;
+            btnConfirmarPagamento.Click += btnConfirmarPagamento_Click;
             // 
             // FrmPagamento
             // 
@@ -367,10 +335,6 @@
         private Label lblTipoPedido;
         private Label lblValorTotal;
         private FlowLayoutPanel flowLayoutPanel1;
-        private RadioButton rbDinheiro;
-        private RadioButton rbPix;
-        private RadioButton rbCartaoDebito;
-        private RadioButton rbCartaoCredito;
         private Panel pnlPagamentoDinheiro;
         private Label lblValorRecebido;
         private TextBox txtValorRecebido;
@@ -379,5 +343,7 @@
         private Panel pnlBtns;
         private Button btnConfirmarPagamento;
         private Button btnCancelarPagamento;
+        private Label lblFormaDePagamento;
+        private ComboBox cbPagmento;
     }
 }

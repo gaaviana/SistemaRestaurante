@@ -14,6 +14,23 @@ namespace SistemaRestaurante.Models
             public int? Numero { get; set; }
             public string Status { get; set; } 
             public BindingList<ItemPedido> Itens { get; set; } = new BindingList<ItemPedido>();
+            public Pagamento Pagamento { get; set; }
+
+            public string FormaPagamento
+            {
+                get
+                {
+                    return Pagamento?.FormaPagamento;
+                }
+            }
+
+            public DateTime? DataPagamento
+            {
+                get
+                {
+                    return Pagamento?.Data;
+                }
+            }
             public decimal Total { get { return Itens.Sum(i => i.Subtotal); } }
         
         public Comanda(int id, int idPedido, string tipo, int? numero, string staus, BindingList<ItemPedido> itens)
@@ -29,6 +46,7 @@ namespace SistemaRestaurante.Models
         public Comanda(Comanda outra)
         {
             Id = outra.Id;
+            IdPedido = outra.IdPedido;
             Tipo = outra.Tipo;
             Numero = outra.Numero;
             Status = outra.Status;
