@@ -30,5 +30,25 @@ namespace SistemaRestaurante.Services
                 .Where(x => x.Status == "Finalizada")
                 .ToList();
         }
+
+        public int QuantidadeVendas()
+        {
+            return BancoFake.Pagamentos.Count;
+        }
+
+        public decimal ReceitaTotal()
+        {
+            return BancoFake.Pagamentos.Sum(p => p.Valor);
+        }
+
+        public decimal TicketMedio()
+        {
+            return BancoFake.Pagamentos.Sum(p => p.Valor) / BancoFake.Pagamentos.Count;
+        }
+
+        public int ItensVendidos()
+        {
+            return BancoFake.Comandas.Where(c => c.Status == "Finalizada").Sum(c => c.Itens.Sum(i => i.Quantidade));
+        }
     }
 }

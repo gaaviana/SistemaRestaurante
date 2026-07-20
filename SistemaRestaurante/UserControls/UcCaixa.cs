@@ -19,15 +19,22 @@ namespace SistemaRestaurante.UserControls
             InitializeComponent();
 
             dgvCaixa.AutoGenerateColumns = false;
-            AtualizarTabela();
+            AtualizarTela();
         }
 
-        public void AtualizarTabela()
+        public void AtualizarTela()
         {
+            if (BancoFake.Pagamentos.Count > 0)
+            {
+                lblVendasValor.Text = caixaService.QuantidadeVendas().ToString();
+                lblReceitaValor.Text = caixaService.ReceitaTotal().ToString();
+                lblTicketValor.Text = caixaService.TicketMedio().ToString();
+                lblItensValor.Text = caixaService.ItensVendidos().ToString();
+            }
+
+
             dgvCaixa.DataSource = null;
             dgvCaixa.DataSource = caixaService.ObterVendas();
         }
-
-
     }
 }
