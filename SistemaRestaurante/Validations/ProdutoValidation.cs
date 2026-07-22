@@ -14,12 +14,6 @@ namespace SistemaRestaurante.Validations
                 return false;
             }
 
-            if (string.IsNullOrWhiteSpace(produto.Categoria))
-            {
-                Mensagens.Erro("Selecione uma categoria");
-                return false;
-            }
-
             if (produto.Preco == null)
             {
                 Mensagens.Erro("O preço deve ser um número válido (ex: 10,50).");

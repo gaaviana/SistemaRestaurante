@@ -28,6 +28,8 @@ namespace SistemaRestaurante.Forms
             lblTipoPedido.Text = comandaService.ComandaAtual.Tipo;
             lblNumeroTipoPedido.Text = comandaService.ComandaAtual.Numero.ToString();
             lblValorTotal.Text = comandaService.ComandaAtual.Total.ToString("C");
+
+            cbPagmento.DataSource = Enum.GetValues(typeof(FormaPagamento));
         }
         private void btnCancelarPagamento_Click(object sender, EventArgs e)
         {
@@ -37,9 +39,9 @@ namespace SistemaRestaurante.Forms
         private void btnConfirmarPagamento_Click(object sender, EventArgs e)
         {
 
-            string formaPagamento = cbPagmento.Text;
+            FormaPagamento forma = (FormaPagamento)cbPagmento.SelectedItem;
 
-            caixaService.RegistrarPagamento(comandaService.ComandaOriginal, formaPagamento);
+            caixaService.RegistrarPagamento(comandaService.ComandaOriginal, forma);
 
             DialogResult = DialogResult.OK;
 

@@ -15,10 +15,10 @@ namespace SistemaRestaurante.Services
             int id = BancoFake.fechamentos.Count + 1;
 
             int totalVendas = pagamentosHoje.Count;
-            decimal totalDinheiro = pagamentosHoje.Where(p => p.FormaPagamento == "Dinheiro").Sum(p => p.Valor);
-            decimal totalPix = pagamentosHoje.Where(p => p.FormaPagamento == "Pix").Sum(p => p.Valor);
-            decimal totalDebito = pagamentosHoje.Where(p => p.FormaPagamento == "Cartão Débito").Sum(p => p.Valor);
-            decimal totalCredito = pagamentosHoje.Where(p => p.FormaPagamento == "Cartão Crédito").Sum(p => p.Valor);
+            decimal totalDinheiro = pagamentosHoje.Where(p => p.FormaPagamento == FormaPagamento.Dinheiro).Sum(p => p.Valor);
+            decimal totalPix = pagamentosHoje.Where(p => p.FormaPagamento == FormaPagamento.Pix).Sum(p => p.Valor);
+            decimal totalDebito = pagamentosHoje.Where(p => p.FormaPagamento == FormaPagamento.CartaoDebito).Sum(p => p.Valor);
+            decimal totalCredito = pagamentosHoje.Where(p => p.FormaPagamento == FormaPagamento.CartaoCredito).Sum(p => p.Valor);
             decimal totalGeral = pagamentosHoje.Sum(p => p.Valor);
 
 

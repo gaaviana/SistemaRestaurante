@@ -8,7 +8,7 @@ namespace SistemaRestaurante.Services
 {
     public class CaixaService
     {
-        public void RegistrarPagamento(Comanda comanda, string formaPagamento)
+        public void RegistrarPagamento(Comanda comanda, FormaPagamento formaPagamento)
         {
             Pagamento pagameto = new Pagamento
             {

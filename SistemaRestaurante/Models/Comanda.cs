@@ -16,7 +16,7 @@ namespace SistemaRestaurante.Models
             public BindingList<ItemPedido> Itens { get; set; } = new BindingList<ItemPedido>();
             public Pagamento Pagamento { get; set; }
 
-            public string FormaPagamento
+            public FormaPagamento? FormaPagamento
             {
                 get
                 {

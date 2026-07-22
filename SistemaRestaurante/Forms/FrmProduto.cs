@@ -1,4 +1,5 @@
-﻿using SistemaRestaurante.Models;
+﻿using SistemaRestaurante.Enums;
+using SistemaRestaurante.Models;
 using SistemaRestaurante.Services;
 using SistemaRestaurante.Validations;
 using System;
@@ -18,6 +19,8 @@ namespace SistemaRestaurante.Forms
         public FrmProduto()
         {
             InitializeComponent();
+
+            cbCategoria.DataSource = Enum.GetValues(typeof(Categorias));
         }
         public FrmProduto(Produto produto)
         {
@@ -33,7 +36,7 @@ namespace SistemaRestaurante.Forms
             lblTitulo.Text = "Atuzalizar Produto";
             btnSalvar.Text = "Atualizar";
             txtNome.Text = produtoSelecionado.Nome;
-            cbCategoria.Text = produtoSelecionado.Categoria;
+            cbCategoria.Text = produtoSelecionado.Categoria.ToString();
             txtPreco.Text = produtoSelecionado.Preco.ToString();
         }
 
@@ -46,8 +49,9 @@ namespace SistemaRestaurante.Forms
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             decimal? preco = decimal.TryParse(txtPreco.Text, out decimal precoConvertido) ? precoConvertido : (decimal?)null;
+            Categorias categoria = (Categorias)cbCategoria.SelectedItem;
 
-            Produto produto = new Produto(txtNome.Text, cbCategoria.Text, preco);
+            Produto produto = new Produto(txtNome.Text, categoria, preco);
 
             if(!ProdutoValidation.Validar(produto))
                 return;

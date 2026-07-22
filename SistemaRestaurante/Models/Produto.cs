@@ -1,4 +1,5 @@
 ﻿using SistemaRestaurante.Data;
+using SistemaRestaurante.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,10 +11,10 @@ namespace SistemaRestaurante.Models
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public string Categoria { get; set; }
+        public Categorias Categoria { get; set; }
         public decimal? Preco {  get; set; }
 
-        public Produto(string nome, string categoria, decimal? preco)
+        public Produto(string nome, Categorias categoria, decimal? preco)
         {
             Id = GerarProximoId();
             Nome = nome;
