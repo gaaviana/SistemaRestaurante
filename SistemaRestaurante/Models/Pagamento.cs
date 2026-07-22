@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SistemaRestaurante.Models
+﻿public class Pagamento
 {
-    public class Pagamento
+    public int Id { get; set; }
+    public FormaPagamento FormaPagamento { get; set; }
+    public decimal Valor { get; set; }
+    public decimal ValorRecebido { get; set; }
+    public DateTime Data { get; set; }
+    public decimal Troco
     {
-        public int Id;
-        public FormaPagamento FormaPagamento;
-        public decimal Valor;
-        public DateTime Data;
+        get
+        {
+            if (FormaPagamento != FormaPagamento.Dinheiro)
+                return 0;
+
+            return ValorRecebido - Valor;
+        }
     }
 }

@@ -201,6 +201,7 @@
             cbPagmento.Name = "cbPagmento";
             cbPagmento.Size = new Size(121, 23);
             cbPagmento.TabIndex = 10;
+            cbPagmento.SelectedIndexChanged += cbPagmento_SelectedIndexChanged;
             // 
             // pnlPagamentoDinheiro
             // 
@@ -231,6 +232,7 @@
             txtValorRecebido.Name = "txtValorRecebido";
             txtValorRecebido.Size = new Size(100, 23);
             txtValorRecebido.TabIndex = 14;
+            txtValorRecebido.TextChanged += txtValorRecebido_TextChanged;
             // 
             // lblTroco
             // 

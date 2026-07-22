@@ -31,6 +31,50 @@ namespace SistemaRestaurante.Forms
 
             cbPagmento.DataSource = Enum.GetValues(typeof(FormaPagamento));
         }
+
+        private void cbPagmento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AtualizarTelaPagamento();
+        }
+
+        private void txtValorRecebido_TextChanged(object sender, EventArgs e)
+        {
+            CalcularTroco();
+        }
+
+        private void AtualizarTelaPagamento()
+        {
+            FormaPagamento forma =
+                (FormaPagamento)cbPagmento.SelectedItem;
+
+            bool dinheiro = forma == FormaPagamento.Dinheiro;
+
+            lblValorRecebido.Visible = dinheiro;
+            txtValorRecebido.Visible = dinheiro;
+
+            lblTroco.Visible = dinheiro;
+            lblValorTroco.Visible = dinheiro;
+        }
+        private void CalcularTroco()
+        {
+            decimal valorPago;
+
+            if (!decimal.TryParse(txtValorRecebido.Text, out valorPago))
+            {
+                lblValorTroco.Text = "R$ 0,00";
+                return;
+            }
+
+            decimal total = comandaService.ComandaAtual.Total;
+
+            decimal troco = valorPago - total;
+
+            if (troco < 0)
+                troco = 0;
+
+            lblValorTroco.Text = troco.ToString("C");
+        }
+
         private void btnCancelarPagamento_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
@@ -40,8 +84,33 @@ namespace SistemaRestaurante.Forms
         {
 
             FormaPagamento forma = (FormaPagamento)cbPagmento.SelectedItem;
+            decimal valorRecebido;
 
-            caixaService.RegistrarPagamento(comandaService.ComandaOriginal, forma);
+            // validação
+            if (forma == FormaPagamento.Dinheiro)
+            {
+
+                if (!decimal.TryParse(txtValorRecebido.Text, out valorRecebido))
+                {
+                    MessageBox.Show("Informe o valor recebido.");
+                    return;
+                }
+
+                if (valorRecebido < comandaService.ComandaAtual.Total)
+                {
+                    MessageBox.Show("O valor recebido é menor que o total.");
+                    return;
+                }
+
+                valorRecebido = decimal.Parse(txtValorRecebido.Text);
+            }
+            else
+            {
+                valorRecebido = comandaService.ComandaAtual.Total;
+            }
+            // =========================================================
+
+            caixaService.RegistrarPagamento(comandaService.ComandaOriginal, forma, valorRecebido);
 
             DialogResult = DialogResult.OK;
 

@@ -8,20 +8,21 @@ namespace SistemaRestaurante.Services
 {
     public class CaixaService
     {
-        public void RegistrarPagamento(Comanda comanda, FormaPagamento formaPagamento)
+        public void RegistrarPagamento(Comanda comanda,FormaPagamento formaPagamento,decimal valorRecebido)
         {
-            Pagamento pagameto = new Pagamento
+            Pagamento pagamento = new Pagamento
             {
                 Id = BancoFake.Pagamentos.Count + 1,
                 FormaPagamento = formaPagamento,
                 Valor = comanda.Total,
+                ValorRecebido = valorRecebido,
                 Data = DateTime.Now
             };
 
-            comanda.Pagamento = pagameto;
+            comanda.Pagamento = pagamento;
             comanda.Status = "Finalizada";
 
-            BancoFake.Pagamentos.Add(pagameto);
+            BancoFake.Pagamentos.Add(pagamento);
         }
 
         public List<Comanda> ObterVendas()
