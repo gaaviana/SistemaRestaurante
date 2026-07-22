@@ -14,6 +14,7 @@ namespace SistemaRestaurante.UserControls
     public partial class UcCaixa : UserControl
     {
         private CaixaService caixaService = new CaixaService();
+        private FechamentoService fechamentoService = new FechamentoService();
         public UcCaixa()
         {
             InitializeComponent();
@@ -35,6 +36,12 @@ namespace SistemaRestaurante.UserControls
 
             dgvCaixa.DataSource = null;
             dgvCaixa.DataSource = caixaService.ObterVendas();
+        }
+
+        private void btnFechamento_Click(object sender, EventArgs e)
+        {
+            DateTime data = DateTime.Now;
+            fechamentoService.GerarFechamento(data);
         }
     }
 }

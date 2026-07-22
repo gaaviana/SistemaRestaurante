@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             dgvCaixa = new DataGridView();
             colTipo = new DataGridViewTextBoxColumn();
             colTipoNumero = new DataGridViewTextBoxColumn();
@@ -40,7 +40,7 @@
             pnlHeader = new Panel();
             lblTitulo = new Label();
             pmlBtns = new Panel();
-            button2 = new Button();
+            btnFechamento = new Button();
             button1 = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
             pnlItens = new Panel();
@@ -74,24 +74,24 @@
             dgvCaixa.BackgroundColor = Color.White;
             dgvCaixa.BorderStyle = BorderStyle.None;
             dgvCaixa.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(30, 41, 59);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgvCaixa.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(30, 41, 59);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvCaixa.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvCaixa.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCaixa.Columns.AddRange(new DataGridViewColumn[] { colTipo, colTipoNumero, colFormaPagamento, colValor, ColHora });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.LightSteelBlue;
-            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dgvCaixa.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.LightSteelBlue;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvCaixa.DefaultCellStyle = dataGridViewCellStyle2;
             dgvCaixa.Dock = DockStyle.Fill;
             dgvCaixa.EnableHeadersVisualStyles = false;
             dgvCaixa.GridColor = Color.Gainsboro;
@@ -180,7 +180,7 @@
             // 
             // pmlBtns
             // 
-            pmlBtns.Controls.Add(button2);
+            pmlBtns.Controls.Add(btnFechamento);
             pmlBtns.Controls.Add(button1);
             pmlBtns.Dock = DockStyle.Fill;
             pmlBtns.Location = new Point(3, 480);
@@ -188,18 +188,27 @@
             pmlBtns.Size = new Size(958, 48);
             pmlBtns.TabIndex = 3;
             // 
-            // button2
+            // btnFechamento
             // 
-            button2.Location = new Point(578, 19);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 1;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            btnFechamento.BackColor = Color.FromArgb(30, 41, 59);
+            btnFechamento.Cursor = Cursors.Hand;
+            btnFechamento.FlatAppearance.BorderSize = 0;
+            btnFechamento.FlatAppearance.MouseOverBackColor = Color.FromArgb(86, 118, 141);
+            btnFechamento.FlatStyle = FlatStyle.Flat;
+            btnFechamento.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnFechamento.ForeColor = Color.White;
+            btnFechamento.Location = new Point(515, 16);
+            btnFechamento.Margin = new Padding(10, 3, 3, 3);
+            btnFechamento.Name = "btnFechamento";
+            btnFechamento.Size = new Size(150, 29);
+            btnFechamento.TabIndex = 6;
+            btnFechamento.Text = "Fechamento";
+            btnFechamento.UseVisualStyleBackColor = false;
+            btnFechamento.Click += btnFechamento_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(400, 16);
+            button1.Location = new Point(340, 19);
             button1.Name = "button1";
             button1.Size = new Size(95, 26);
             button1.TabIndex = 0;
@@ -398,7 +407,6 @@
         private DataGridViewTextBoxColumn ColHora;
         private TableLayoutPanel tlpCaixa;
         private Panel pmlBtns;
-        private Button button2;
         private Button button1;
         private TableLayoutPanel tableLayoutPanel1;
         private Panel pnlVendas;
@@ -415,5 +423,6 @@
         private Label lblReceita;
         private Panel pnlHeader;
         private Label lblTitulo;
+        private Button btnFechamento;
     }
 }

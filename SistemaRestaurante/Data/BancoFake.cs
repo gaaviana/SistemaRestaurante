@@ -15,6 +15,8 @@ namespace SistemaRestaurante.Data
 
         public static BindingList<Pagamento> Pagamentos = new BindingList<Pagamento>();
 
+        public static BindingList<FechamentoCaixa> fechamentos = new BindingList<FechamentoCaixa>();
+
          static BancoFake()
         {
             Produtos.Add(new Produto("X-burguer", "Lancher", 25.90m));
@@ -32,7 +34,7 @@ namespace SistemaRestaurante.Data
             Comandas.Add(c1); Comandas.Add(c2); Comandas.Add(c3); Comandas.Add(c4); Comandas.Add(c5); Comandas.Add(c6);
 
             c2.Pagamento = new Pagamento {Id = 1, FormaPagamento = "Pix", Valor = c2.Total, Data = DateTime.Now};
-            c3.Pagamento = new Pagamento{ Id = 2, FormaPagamento = "Cartão", Valor = c3.Total, Data = DateTime.Now.AddMinutes(-20)};
+            c3.Pagamento = new Pagamento{ Id = 2, FormaPagamento = "Cartão Débito", Valor = c3.Total, Data = DateTime.Now.AddMinutes(-20)};
             c5.Pagamento = new Pagamento{ Id = 3, FormaPagamento = "Dinheiro", Valor = c5.Total, Data = DateTime.Now.AddHours(-1)};
 
             Pagamentos.Add(c2.Pagamento);
