@@ -70,13 +70,13 @@
             dgvRelatorios.Dock = DockStyle.Fill;
             dgvRelatorios.EnableHeadersVisualStyles = false;
             dgvRelatorios.GridColor = Color.Gainsboro;
-            dgvRelatorios.Location = new Point(0, 0);
+            dgvRelatorios.Location = new Point(10, 10);
             dgvRelatorios.MultiSelect = false;
             dgvRelatorios.Name = "dgvRelatorios";
             dgvRelatorios.ReadOnly = true;
             dgvRelatorios.RowHeadersVisible = false;
             dgvRelatorios.SelectionMode = DataGridViewSelectionMode.CellSelect;
-            dgvRelatorios.Size = new Size(984, 551);
+            dgvRelatorios.Size = new Size(964, 531);
             dgvRelatorios.TabIndex = 3;
             // 
             // colData
@@ -134,6 +134,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(dgvRelatorios);
             Name = "UcFechamentos";
+            Padding = new Padding(10);
             Size = new Size(984, 551);
             ((System.ComponentModel.ISupportInitialize)dgvRelatorios).EndInit();
             ResumeLayout(false);

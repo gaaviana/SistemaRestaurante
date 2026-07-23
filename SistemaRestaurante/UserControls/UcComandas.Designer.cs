@@ -48,6 +48,7 @@
             // 
             // btnNovoPedido
             // 
+            btnNovoPedido.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnNovoPedido.BackColor = Color.FromArgb(30, 41, 59);
             btnNovoPedido.Cursor = Cursors.Hand;
             btnNovoPedido.FlatAppearance.BorderSize = 0;
@@ -77,11 +78,11 @@
             // 
             // tlpComandas
             // 
+            tlpComandas.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tlpComandas.ColumnCount = 1;
             tlpComandas.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tlpComandas.Controls.Add(pnlHeader, 0, 0);
             tlpComandas.Controls.Add(pnlGrid, 0, 1);
-            tlpComandas.Dock = DockStyle.Fill;
             tlpComandas.Location = new Point(10, 10);
             tlpComandas.Name = "tlpComandas";
             tlpComandas.RowCount = 2;

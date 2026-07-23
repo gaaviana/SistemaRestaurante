@@ -142,13 +142,13 @@
             // 
             // tlpCaixa
             // 
+            tlpCaixa.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tlpCaixa.ColumnCount = 1;
             tlpCaixa.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tlpCaixa.Controls.Add(pnlHeader, 0, 0);
             tlpCaixa.Controls.Add(dgvCaixa, 0, 2);
             tlpCaixa.Controls.Add(pmlBtns, 0, 3);
             tlpCaixa.Controls.Add(tableLayoutPanel1, 0, 1);
-            tlpCaixa.Dock = DockStyle.Fill;
             tlpCaixa.Location = new Point(10, 10);
             tlpCaixa.Name = "tlpCaixa";
             tlpCaixa.RowCount = 4;
@@ -171,8 +171,9 @@
             // 
             // dtpData
             // 
+            dtpData.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             dtpData.Format = DateTimePickerFormat.Short;
-            dtpData.Location = new Point(818, 18);
+            dtpData.Location = new Point(798, 18);
             dtpData.Name = "dtpData";
             dtpData.Size = new Size(127, 23);
             dtpData.TabIndex = 7;
