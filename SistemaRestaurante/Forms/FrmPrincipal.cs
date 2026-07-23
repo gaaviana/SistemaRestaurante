@@ -37,7 +37,12 @@ namespace SistemaRestaurante
         private void btnCaixa_Click(object sender, EventArgs e)
         {
             UcCaixa caixa = new UcCaixa();
-            AbrirTela (caixa);
+            AbrirTela(caixa);
+        }
+        private void btnRelatorios_Click(object sender, EventArgs e)
+        {
+            UcFechamentos fechamentos = new UcFechamentos();
+            AbrirTela(fechamentos);
         }
 
         private void AbrirNovoPedido()

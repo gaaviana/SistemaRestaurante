@@ -1,5 +1,7 @@
 ﻿using SistemaRestaurante.Data;
 using SistemaRestaurante.Models;
+using SistemaRestaurante.Utils;
+using SistemaRestaurante.Validations;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +12,8 @@ namespace SistemaRestaurante.Services
     {
         public void GerarFechamento(DateTime data)
         {
+           
+
             var pagamentosHoje = BancoFake.Pagamentos.Where(p => p.Data.Date == data.Date).ToList();
 
             int id = BancoFake.fechamentos.Count + 1;
@@ -23,16 +27,13 @@ namespace SistemaRestaurante.Services
 
 
             FechamentoCaixa fechamentoHoje = new FechamentoCaixa(id, data, totalVendas, totalDinheiro, totalPix, totalDebito, totalCredito, totalGeral);
-            // BancoFake.fechamentos.Add(fechamentoHoje);
-            MessageBox.Show($"{fechamentoHoje.Id}\n" +
-                            $"{fechamentoHoje.Data}\n" +
-                            $"{fechamentoHoje.QuantidadeVendas}\n" +
-                            $"{fechamentoHoje.TotalDinheiro}\n" +
-                            $"{fechamentoHoje.TotalPix}\n" +
-                            $"{fechamentoHoje.TotalDebito}\n" + 
-                            $"{fechamentoHoje.TotalCredito}\n" + 
-                            $"{fechamentoHoje.TotalGeral}\n" 
-                            );
+
+            if (!FechamentoValidation.Validar(fechamentoHoje))
+            {
+                return;
+            }
+            
+            BancoFake.fechamentos.Add(fechamentoHoje);
         }
     }
 }

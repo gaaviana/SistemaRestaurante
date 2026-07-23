@@ -327,6 +327,7 @@
             btnRelatorios.Text = "Relatórios";
             btnRelatorios.TextAlign = ContentAlignment.MiddleLeft;
             btnRelatorios.UseVisualStyleBackColor = true;
+            btnRelatorios.Click += btnRelatorios_Click;
             // 
             // btnConfig
             // 
