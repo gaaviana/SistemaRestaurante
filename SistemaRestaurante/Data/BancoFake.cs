@@ -34,7 +34,7 @@ namespace SistemaRestaurante.Data
             Comanda c6 = new Comanda(6, 6, "Viagem", 403, "Aberta", new BindingList<ItemPedido> { new ItemPedido(Produtos[0], 3), new ItemPedido(Produtos[3], 1)});
             Comandas.Add(c1); Comandas.Add(c2); Comandas.Add(c3); Comandas.Add(c4); Comandas.Add(c5); Comandas.Add(c6);
 
-            c2.Pagamento = new Pagamento {Id = 1, FormaPagamento = FormaPagamento.Pix, Valor = c2.Total, Data = DateTime.Now};
+            c2.Pagamento = new Pagamento {Id = 1, FormaPagamento = FormaPagamento.Pix, Valor = c2.Total, Data = DateTime.Now.AddDays(-1)};
             c3.Pagamento = new Pagamento{ Id = 2, FormaPagamento = FormaPagamento.CartaoDebito, Valor = c3.Total, Data = DateTime.Now.AddMinutes(-20)};
             c5.Pagamento = new Pagamento{ Id = 3, FormaPagamento = FormaPagamento.Dinheiro, Valor = c5.Total, Data = DateTime.Now.AddHours(-1)};
 

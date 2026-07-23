@@ -36,7 +36,7 @@ namespace SistemaRestaurante.Services
         {
             return BancoFake.Comandas
                 .Where(c => c.Status == "Finalizada" &&
-                            c.DataPagamento == data.Date)
+                            c.DataPagamento.Value.Date == data.Date)
                 .ToList();
         }
 

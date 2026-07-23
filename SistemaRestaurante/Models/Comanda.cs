@@ -28,7 +28,7 @@ namespace SistemaRestaurante.Models
             {
                 get
                 {
-                    return Pagamento?.Data.Date;
+                    return Pagamento?.Data;
                 }
             }
             public decimal Total { get { return Itens.Sum(i => i.Subtotal); } }

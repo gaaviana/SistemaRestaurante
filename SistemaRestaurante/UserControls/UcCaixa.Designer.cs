@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             dgvCaixa = new DataGridView();
             colTipo = new DataGridViewTextBoxColumn();
@@ -85,14 +86,14 @@
             dgvCaixa.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvCaixa.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCaixa.Columns.AddRange(new DataGridViewColumn[] { colTipo, colTipoNumero, colFormaPagamento, colValor, ColHora });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.LightSteelBlue;
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvCaixa.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.LightSteelBlue;
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvCaixa.DefaultCellStyle = dataGridViewCellStyle3;
             dgvCaixa.Dock = DockStyle.Fill;
             dgvCaixa.EnableHeadersVisualStyles = false;
             dgvCaixa.GridColor = Color.Gainsboro;
@@ -136,6 +137,9 @@
             // ColHora
             // 
             ColHora.DataPropertyName = "DataPagamento";
+            dataGridViewCellStyle2.Format = "t";
+            dataGridViewCellStyle2.NullValue = null;
+            ColHora.DefaultCellStyle = dataGridViewCellStyle2;
             ColHora.HeaderText = "Hora";
             ColHora.Name = "ColHora";
             ColHora.ReadOnly = true;
@@ -209,7 +213,7 @@
             btnFechamento.FlatStyle = FlatStyle.Flat;
             btnFechamento.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnFechamento.ForeColor = Color.White;
-            btnFechamento.Location = new Point(515, 16);
+            btnFechamento.Location = new Point(497, 18);
             btnFechamento.Margin = new Padding(10, 3, 3, 3);
             btnFechamento.Name = "btnFechamento";
             btnFechamento.Size = new Size(150, 29);
@@ -412,11 +416,6 @@
         #endregion
 
         private DataGridView dgvCaixa;
-        private DataGridViewTextBoxColumn colTipo;
-        private DataGridViewTextBoxColumn colTipoNumero;
-        private DataGridViewTextBoxColumn colFormaPagamento;
-        private DataGridViewTextBoxColumn colValor;
-        private DataGridViewTextBoxColumn ColHora;
         private TableLayoutPanel tlpCaixa;
         private Panel pmlBtns;
         private Button button1;
@@ -437,5 +436,10 @@
         private Label lblTitulo;
         private Button btnFechamento;
         private DateTimePicker dtpData;
+        private DataGridViewTextBoxColumn colTipo;
+        private DataGridViewTextBoxColumn colTipoNumero;
+        private DataGridViewTextBoxColumn colFormaPagamento;
+        private DataGridViewTextBoxColumn colValor;
+        private DataGridViewTextBoxColumn ColHora;
     }
 }
