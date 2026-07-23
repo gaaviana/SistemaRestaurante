@@ -15,11 +15,13 @@ namespace SistemaRestaurante.UserControls
     {
         private CaixaService caixaService = new CaixaService();
         private FechamentoService fechamentoService = new FechamentoService();
+        private DateTime dataSelecionada;
         public UcCaixa()
         {
             InitializeComponent();
 
             dgvCaixa.AutoGenerateColumns = false;
+            dataSelecionada = dtpData.Value.Date;
             AtualizarTela();
         }
 
@@ -27,21 +29,26 @@ namespace SistemaRestaurante.UserControls
         {
             if (BancoFake.Pagamentos.Count > 0)
             {
-                lblVendasValor.Text = caixaService.QuantidadeVendas().ToString();
-                lblReceitaValor.Text = caixaService.ReceitaTotal().ToString();
-                lblTicketValor.Text = caixaService.TicketMedio().ToString();
-                lblItensValor.Text = caixaService.ItensVendidos().ToString();
+                lblVendasValor.Text = caixaService.QuantidadeVendas(dataSelecionada).ToString();
+                lblReceitaValor.Text = caixaService.ReceitaTotal(dataSelecionada).ToString("C");
+                lblTicketValor.Text = caixaService.TicketMedio(dataSelecionada).ToString("C");
+                lblItensValor.Text = caixaService.ItensVendidos(dataSelecionada).ToString();
             }
 
 
             dgvCaixa.DataSource = null;
-            dgvCaixa.DataSource = caixaService.ObterVendas();
+            dgvCaixa.DataSource = caixaService.ObterVendas(dataSelecionada);
         }
 
         private void btnFechamento_Click(object sender, EventArgs e)
         {
-            DateTime data = DateTime.Now;
-            fechamentoService.GerarFechamento(data);
+            fechamentoService.GerarFechamento(dataSelecionada);
+        }
+
+        private void dtpData_ValueChanged(object sender, EventArgs e)
+        {
+            dataSelecionada = dtpData.Value.Date;
+            AtualizarTela();
         }
     }
 }

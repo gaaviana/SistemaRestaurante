@@ -38,6 +38,7 @@
             ColHora = new DataGridViewTextBoxColumn();
             tlpCaixa = new TableLayoutPanel();
             pnlHeader = new Panel();
+            dtpData = new DateTimePicker();
             lblTitulo = new Label();
             pmlBtns = new Panel();
             btnFechamento = new Button();
@@ -160,12 +161,22 @@
             // 
             // pnlHeader
             // 
+            pnlHeader.Controls.Add(dtpData);
             pnlHeader.Controls.Add(lblTitulo);
             pnlHeader.Dock = DockStyle.Fill;
             pnlHeader.Location = new Point(3, 3);
             pnlHeader.Name = "pnlHeader";
             pnlHeader.Size = new Size(958, 47);
             pnlHeader.TabIndex = 9;
+            // 
+            // dtpData
+            // 
+            dtpData.Format = DateTimePickerFormat.Short;
+            dtpData.Location = new Point(818, 18);
+            dtpData.Name = "dtpData";
+            dtpData.Size = new Size(127, 23);
+            dtpData.TabIndex = 7;
+            dtpData.ValueChanged += dtpData_ValueChanged;
             // 
             // lblTitulo
             // 
@@ -424,5 +435,6 @@
         private Panel pnlHeader;
         private Label lblTitulo;
         private Button btnFechamento;
+        private DateTimePicker dtpData;
     }
 }

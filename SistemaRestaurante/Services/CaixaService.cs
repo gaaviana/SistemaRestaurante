@@ -25,31 +25,49 @@ namespace SistemaRestaurante.Services
             BancoFake.Pagamentos.Add(pagamento);
         }
 
-        public List<Comanda> ObterVendas()
+        private List<Pagamento> ObterPagamentosDoDia(DateTime data)
         {
-            return BancoFake.Comandas
-                .Where(x => x.Status == "Finalizada")
+            return BancoFake.Pagamentos
+                .Where(p => p.Data.Date == data.Date)
                 .ToList();
         }
 
-        public int QuantidadeVendas()
+        private List<Comanda> ObterComandasDoDia(DateTime data)
         {
-            return BancoFake.Pagamentos.Count;
+            return BancoFake.Comandas
+                .Where(c => c.Status == "Finalizada" &&
+                            c.DataPagamento == data.Date)
+                .ToList();
         }
 
-        public decimal ReceitaTotal()
+        public List<Comanda> ObterVendas(DateTime data)
         {
-            return BancoFake.Pagamentos.Sum(p => p.Valor);
+            return ObterComandasDoDia(data);
         }
 
-        public decimal TicketMedio()
+        public int QuantidadeVendas(DateTime data)
         {
-            return BancoFake.Pagamentos.Sum(p => p.Valor) / BancoFake.Pagamentos.Count;
+            return ObterPagamentosDoDia(data).Count;
         }
 
-        public int ItensVendidos()
+        public decimal ReceitaTotal(DateTime data)
         {
-            return BancoFake.Comandas.Where(c => c.Status == "Finalizada").Sum(c => c.Itens.Sum(i => i.Quantidade));
+            return ObterPagamentosDoDia(data).Sum(p => p.Valor);
+        }
+
+        public decimal TicketMedio(DateTime data)
+        {
+            var pagamentos = ObterPagamentosDoDia(data);
+
+            if (pagamentos.Count == 0)
+                return 0;
+
+            return pagamentos.Sum(p => p.Valor) / pagamentos.Count;
+        }
+
+        public int ItensVendidos(DateTime data)
+        {
+            return ObterComandasDoDia(data).Sum(c => c.Itens.Sum(i => i.Quantidade));
         }
     }
 }

@@ -17,6 +17,12 @@ namespace SistemaRestaurante.Validations
                 return false;
             }
 
+            if(fechamento.QuantidadeVendas <= 0)
+            {
+                Mensagens.Erro("Não existe registros nessa data");
+                return false;
+            }
+
             Mensagens.Sucesso("Fechamento gerado com sucesso!");
             return true;
         }
