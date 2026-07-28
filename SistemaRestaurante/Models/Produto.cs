@@ -6,30 +6,26 @@ using System.Text;
 
 namespace SistemaRestaurante.Models
 {
-   
+
     public class Produto
     {
         public int Id { get; set; }
-        public string Nome { get; set; }
-        public Categorias Categoria { get; set; }
-        public decimal? Preco {  get; set; }
 
-        public Produto(string nome, Categorias categoria, decimal? preco)
+        public string Nome { get; set; }
+
+        public Categorias Categoria { get; set; }
+
+        public decimal Preco { get; set; } // tinha um operador de nulo - ?
+
+        public Produto()
         {
-            Id = GerarProximoId();
+        }
+
+        public Produto(string nome, Categorias categoria, decimal preco)
+        {
             Nome = nome;
             Categoria = categoria;
             Preco = preco;
-        }
-
-        private int GerarProximoId()
-        {
-            if (BancoFake.Produtos != null && BancoFake.Produtos.Count > 0)
-            {
-                return BancoFake.Produtos.Max(p => p.Id) + 1;
-            }
-            return 1;
-
         }
     }
 }

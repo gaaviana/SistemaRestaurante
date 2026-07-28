@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaRestaurante.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -7,51 +8,48 @@ namespace SistemaRestaurante.Models
 {
     public class Comanda
     {
-            public int Id { get; set; }
+        public int Id { get; set; } // Chave primária do banco
 
-            public int IdPedido { get; set; }
-            public string Tipo { get; set; } 
-            public int? Numero { get; set; }
-            public string Status { get; set; } 
-            public BindingList<ItemPedido> Itens { get; set; } = new BindingList<ItemPedido>();
-            public Pagamento Pagamento { get; set; }
+        public int NumeroPedido { get; set; } // Número exibido ao usuário
 
-            public FormaPagamento? FormaPagamento
-            {
-                get
-                {
-                    return Pagamento?.FormaPagamento;
-                }
-            }
+        public TipoComanda Tipo { get; set; }
 
-            public DateTime? DataPagamento
-            {
-                get
-                {
-                    return Pagamento?.Data;
-                }
-            }
-            public decimal Total { get { return Itens.Sum(i => i.Subtotal); } }
-        
-        public Comanda(int id, int idPedido, string tipo, int? numero, string staus, BindingList<ItemPedido> itens)
+        public int? Numero { get; set; }
+
+        public StatusComanda Status { get; set; }
+
+        public List<ItemPedido> Itens { get; set; } = new();
+
+        public Pagamento Pagamento { get; set; }
+
+        public FormaPagamento? FormaPagamento => Pagamento?.FormaPagamento;
+
+        public DateTime? DataPagamento => Pagamento?.Data;
+
+        public decimal Total => Itens.Sum(i => i.Subtotal);
+
+        public Comanda()
         {
-            Id = id; 
-            IdPedido = idPedido;
-            Tipo = tipo; 
-            Numero = numero; 
-            Status = staus;
+        }
+
+        public Comanda(int numeroPedido, string tipo, int? numero, string status, List<ItemPedido> itens)
+        {
+            NumeroPedido = numeroPedido;
+            Tipo = tipo;
+            Numero = numero;
+            Status = status;
             Itens = itens;
         }
 
         public Comanda(Comanda outra)
         {
             Id = outra.Id;
-            IdPedido = outra.IdPedido;
+            NumeroPedido = outra.NumeroPedido;
             Tipo = outra.Tipo;
             Numero = outra.Numero;
             Status = outra.Status;
 
-            Itens = new BindingList<ItemPedido>();
+            Itens = new List<ItemPedido>();
 
             foreach (var item in outra.Itens)
             {

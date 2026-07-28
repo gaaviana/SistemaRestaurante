@@ -7,18 +7,27 @@ namespace SistemaRestaurante.Models
     public class FechamentoCaixa
     {
         public int Id { get; set; }
+
         public DateTime Data { get; set; }
+
         public int QuantidadeVendas { get; set; }
+
         public decimal TotalDinheiro { get; set; }
+
         public decimal TotalPix { get; set; }
+
         public decimal TotalDebito { get; set; }
+
         public decimal TotalCredito { get; set; }
+
         public decimal TotalGeral { get; set; }
 
-
-        public FechamentoCaixa(int id, DateTime data, int quantidadeVendas, decimal totalDinheiro, decimal totalPix, decimal totalDebito, decimal totalCredito, decimal totalGeral)
+        public FechamentoCaixa()
         {
-            Id = id;
+        }
+
+        public FechamentoCaixa(DateTime data, int quantidadeVendas, decimal totalDinheiro, decimal totalPix, decimal totalDebito, decimal totalCredito, decimal totalGeral)
+        {
             Data = data;
             QuantidadeVendas = quantidadeVendas;
             TotalDinheiro = totalDinheiro;
