@@ -16,13 +16,13 @@ namespace SistemaRestaurante.Services
         {
             ComandaOriginal = null;
 
-            int idPedido = BancoFake.Comandas.Count + 1;
+            int NumeroPedido = BancoFake.Comandas.Count + 1;
 
             ComandaAtual = new Comanda(
-                idPedido,
-                "",
-                0,
-                "Aberta",
+                NumeroPedido,
+                null,
+                null,
+                StatusComanda.Aberta,
                 new List<ItemPedido>()
             );
         }

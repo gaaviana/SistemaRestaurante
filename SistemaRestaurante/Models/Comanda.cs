@@ -12,7 +12,7 @@ namespace SistemaRestaurante.Models
 
         public int NumeroPedido { get; set; } // Número exibido ao usuário
 
-        public TipoComanda Tipo { get; set; }
+        public TipoComanda? Tipo { get; set; }
 
         public int? Numero { get; set; }
 
@@ -32,7 +32,7 @@ namespace SistemaRestaurante.Models
         {
         }
 
-        public Comanda(int numeroPedido, TipoComanda tipo, int? numero, StatusComanda status, List<ItemPedido> itens)
+        public Comanda(int numeroPedido, TipoComanda? tipo, int? numero, StatusComanda status, List<ItemPedido> itens)
         {
             NumeroPedido = numeroPedido;
             Tipo = tipo;

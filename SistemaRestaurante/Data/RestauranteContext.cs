@@ -14,6 +14,10 @@ namespace SistemaRestaurante.Data
         public DbSet<Pagamento> Pagamentos { get; set; }
 
         public DbSet<FechamentoCaixa> FechamentoCaixas { get; set; }
+
+        public RestauranteContext()
+        {
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlite("Data Source=Restaurante.db");
