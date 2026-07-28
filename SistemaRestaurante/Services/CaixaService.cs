@@ -1,4 +1,5 @@
 ﻿using SistemaRestaurante.Data;
+using SistemaRestaurante.Enums;
 using SistemaRestaurante.Models;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace SistemaRestaurante.Services
             };
 
             comanda.Pagamento = pagamento;
-            comanda.Status = "Finalizada";
+            comanda.Status = StatusComanda.Finalizada;
 
             BancoFake.Pagamentos.Add(pagamento);
         }
@@ -35,7 +36,7 @@ namespace SistemaRestaurante.Services
         private List<Comanda> ObterComandasDoDia(DateTime data)
         {
             return BancoFake.Comandas
-                .Where(c => c.Status == "Finalizada" &&
+                .Where(c => c.Status == StatusComanda.Finalizada &&
                             c.DataPagamento.Value.Date == data.Date)
                 .ToList();
         }

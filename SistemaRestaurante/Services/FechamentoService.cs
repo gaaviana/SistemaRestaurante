@@ -26,7 +26,7 @@ namespace SistemaRestaurante.Services
             decimal totalGeral = pagamentosHoje.Sum(p => p.Valor);
 
 
-            FechamentoCaixa fechamentoHoje = new FechamentoCaixa(id, data, totalVendas, totalDinheiro, totalPix, totalDebito, totalCredito, totalGeral);
+            FechamentoCaixa fechamentoHoje = new FechamentoCaixa(data, totalVendas, totalDinheiro, totalPix, totalDebito, totalCredito, totalGeral);
 
             if (!FechamentoValidation.Validar(fechamentoHoje))
             {

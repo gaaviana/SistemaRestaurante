@@ -1,4 +1,5 @@
 ﻿using SistemaRestaurante.Data;
+using SistemaRestaurante.Enums;
 using SistemaRestaurante.Forms;
 using SistemaRestaurante.Models;
 using SistemaRestaurante.Services;
@@ -45,10 +46,10 @@ namespace SistemaRestaurante.UserControls
                 ? ""
                 : comandaService.ComandaAtual.Numero.ToString();
 
-            rbMesa.Checked = comandaService.ComandaAtual.Tipo == "Mesa";
-            rbViagem.Checked = comandaService.ComandaAtual.Tipo == "Viagem";
+            rbMesa.Checked = comandaService.ComandaAtual.Tipo == TipoComanda.Mesa;
+            rbViagem.Checked = comandaService.ComandaAtual.Tipo == TipoComanda.Viagem;
 
-            int idPedido = comandaService.ComandaAtual.IdPedido;
+            int idPedido = comandaService.ComandaAtual.NumeroPedido; // tbm verificar comom vai ficar apos o migrate 
 
             lblNumeroPedido.Text = $"Pedido #{idPedido:D4}";
         }
@@ -98,11 +99,17 @@ namespace SistemaRestaurante.UserControls
         public event Action PedidoSalvo;
         private void btnSalvarPedido_Click(object sender, EventArgs e)
         {
-            comandaService.ComandaAtual.Tipo = rbMesa.Checked ? "Mesa" : rbViagem.Checked ? "Viagem" : null;
+            if(!rbMesa.Checked && !rbViagem.Checked)
+{
+                MessageBox.Show("Selecione o tipo da comanda.");
+                return;
+            }
+
+            comandaService.ComandaAtual.Tipo = rbMesa.Checked ? TipoComanda.Mesa : TipoComanda.Viagem;
 
             comandaService.ComandaAtual.Numero = int.TryParse(cbNumero.Text, out int numConvertido) ? numConvertido : (int?)null;
 
-            comandaService.ComandaAtual.Status = "Aberta";
+            comandaService.ComandaAtual.Status = StatusComanda.Aberta;
 
 
             if (!ComandaValidation.Validar(comandaService.ComandaAtual))

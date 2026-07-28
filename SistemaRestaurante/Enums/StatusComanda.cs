@@ -7,6 +7,6 @@ namespace SistemaRestaurante.Enums
     public enum StatusComanda
     {
         Aberta,
-        Fechada
+        Finalizada
     }
 }

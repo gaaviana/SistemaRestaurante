@@ -48,7 +48,14 @@ namespace SistemaRestaurante.Forms
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-            decimal? preco = decimal.TryParse(txtPreco.Text, out decimal precoConvertido) ? precoConvertido : (decimal?)null;
+            decimal preco;
+
+            if (!decimal.TryParse(txtPreco.Text, out preco))
+            {
+                MessageBox.Show("Preço inválido.");
+                return;
+            };
+
             Categorias categoria = (Categorias)cbCategoria.SelectedItem;
 
             Produto produto = new Produto(txtNome.Text, categoria, preco);

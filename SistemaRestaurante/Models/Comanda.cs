@@ -32,7 +32,7 @@ namespace SistemaRestaurante.Models
         {
         }
 
-        public Comanda(int numeroPedido, string tipo, int? numero, string status, List<ItemPedido> itens)
+        public Comanda(int numeroPedido, TipoComanda tipo, int? numero, StatusComanda status, List<ItemPedido> itens)
         {
             NumeroPedido = numeroPedido;
             Tipo = tipo;

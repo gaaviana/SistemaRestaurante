@@ -1,4 +1,5 @@
 ﻿using SistemaRestaurante.Data;
+using SistemaRestaurante.Enums;
 using SistemaRestaurante.Models;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,11 @@ namespace SistemaRestaurante.Services
             int idPedido = BancoFake.Comandas.Count + 1;
 
             ComandaAtual = new Comanda(
-                0,
                 idPedido,
                 "",
                 0,
                 "Aberta",
-                new BindingList<ItemPedido>()
+                new List<ItemPedido>()
             );
         }
         public void AbrirComanda(Comanda comanda)
@@ -72,7 +72,7 @@ namespace SistemaRestaurante.Services
         public List<Comanda> ComandasAbertas()
         {
             return BancoFake.Comandas
-                .Where(x => x.Status == "Aberta")
+                .Where(x => x.Status == StatusComanda.Aberta)
                 .ToList();
         }
         public void Finalizar()
