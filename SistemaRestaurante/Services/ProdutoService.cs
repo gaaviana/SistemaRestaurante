@@ -1,4 +1,5 @@
-﻿using SistemaRestaurante.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaRestaurante.Data;
 using SistemaRestaurante.Models;
 using SistemaRestaurante.UserControls;
 using SistemaRestaurante.Utils;
@@ -11,9 +12,21 @@ namespace SistemaRestaurante.Services
 {
     public class ProdutoService
     {
+        private readonly RestauranteContext context;
+
+        public ProdutoService()
+        {
+            context = new RestauranteContext();
+        }
         public void Cadastrar(Produto produto)
         {
-            BancoFake.Produtos.Add(produto);
+            using (var context = new RestauranteContext())
+            {
+                context.Produtos.Add(produto);
+                context.SaveChanges();
+            }
+
+            //BancoFake.Produtos.Add(produto);
         }
 
         public void Editar(int id, Produto produtoEdit)

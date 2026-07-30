@@ -20,7 +20,10 @@ namespace SistemaRestaurante.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlite("Data Source=Restaurante.db");
+            string caminhoProjeto = Path.GetFullPath(
+                Path.Combine(AppContext.BaseDirectory, @"..\..\..\", "Restaurante.db"));
+
+            options.UseSqlite($"Data Source={caminhoProjeto}");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

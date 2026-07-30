@@ -6,10 +6,10 @@ namespace SistemaRestaurante.Enums
 {
     public enum Categorias
     {
-        Lanches,
-        Pizzas,
-        Porcoes,
-        Bebidas,
-        Sobremesas
+        Lanches = 0,
+        Pizzas = 1,
+        Porcoes = 2,
+        Bebidas = 3,
+        Sobremesas = 4
     }
 }
