@@ -26,6 +26,7 @@ namespace SistemaRestaurante.Forms
         {
             InitializeComponent();
 
+            cbCategoria.DataSource = Enum.GetValues(typeof(Categorias));
             produtoSelecionado = produto;
             
             CarregarProdutoEdit();

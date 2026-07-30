@@ -27,7 +27,7 @@ namespace SistemaRestaurante.UserControls
         private void AtualizarTabela()
         {
             dgvProdutos.DataSource = null;
-            dgvProdutos.DataSource = BancoFake.Produtos;
+            dgvProdutos.DataSource = produtoService.Listar();
         }
 
         private void btnNovoProduto_Click(object sender, EventArgs e)
