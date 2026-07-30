@@ -1,4 +1,5 @@
-﻿using SistemaRestaurante.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaRestaurante.Data;
 using SistemaRestaurante.Enums;
 using SistemaRestaurante.Models;
 using System;
@@ -10,8 +11,15 @@ namespace SistemaRestaurante.Services
 {
     public class ComandaService
     {
+        private readonly RestauranteContext context;
+
+        public ComandaService()
+        {
+            context = new RestauranteContext();
+        }
         public Comanda ComandaAtual { get; private set; }
         public Comanda ComandaOriginal;
+
         public void NovaComanda()
         {
             ComandaOriginal = null;
@@ -26,11 +34,14 @@ namespace SistemaRestaurante.Services
                 new List<ItemPedido>()
             );
         }
-        public void AbrirComanda(Comanda comanda)
+        public void AbrirComanda(int id)
         {
-            ComandaOriginal = comanda;
+            using (var context = new RestauranteContext())
+            {
+                ComandaOriginal = context.Comandas.Include(c => c.Itens).ThenInclude(i => i.Produto).FirstOrDefault(c => c.Id == id);
 
-            ComandaAtual = new Comanda(comanda);
+                ComandaAtual = new Comanda(ComandaOriginal);
+            }
         }
 
         public void AdicionarProduto(Produto produto, int qtd)
@@ -44,23 +55,47 @@ namespace SistemaRestaurante.Services
         }
         public void SalvarComanda()
         {
-            if(ComandaOriginal == null)
+            using (var context = new RestauranteContext())
             {
-                ComandaAtual.Id = BancoFake.Comandas.Count + 1;
-                BancoFake.Comandas.Add(ComandaAtual);
-            }
-            else
-            {
-                ComandaOriginal.Tipo = ComandaAtual.Tipo;
-                ComandaOriginal.Numero = ComandaAtual.Numero;
-                ComandaOriginal.Status = ComandaAtual.Status;
-
-                ComandaOriginal.Itens.Clear();
-
-                foreach(var item in ComandaAtual.Itens)
+                if (ComandaAtual.Id == 0)
                 {
-                    ComandaOriginal.Itens.Add(new ItemPedido(item));
+                    foreach (var item in ComandaAtual.Itens)
+                    {
+                        context.Attach(item.Produto);
+                    }
+
+                    context.Comandas.Add(ComandaAtual);
                 }
+                else
+                {
+                    Comanda comandaBanco = context.Comandas.Include(c => c.Itens).FirstOrDefault(c => c.Id == ComandaAtual.Id);
+
+                    if (comandaBanco == null)
+                        return;
+
+                    comandaBanco.Tipo = ComandaAtual.Tipo;
+                    comandaBanco.Numero = ComandaAtual.Numero;
+                    comandaBanco.Status = ComandaAtual.Status;
+
+                    context.ItemPedidos.RemoveRange(comandaBanco.Itens);
+                    comandaBanco.Itens.Clear();
+
+
+                    foreach (var item in ComandaAtual.Itens)
+                    {
+                        context.Attach(item.Produto);
+
+                        comandaBanco.Itens.Add(new ItemPedido
+                        {
+                            Produto = item.Produto,
+                            ProdutoId = item.ProdutoId,
+                            Quantidade = item.Quantidade
+                        });
+                    }
+                    // depois vamos tratar os itens
+                }
+
+                context.SaveChanges();
             }
         }
 
@@ -71,13 +106,11 @@ namespace SistemaRestaurante.Services
         }
         public List<Comanda> ComandasAbertas()
         {
-            return BancoFake.Comandas
-                .Where(x => x.Status == StatusComanda.Aberta)
-                .ToList();
-        }
-        public void Finalizar()
-        {
+            return context.Comandas.Where(x => x.Status == StatusComanda.Aberta).ToList();
 
+            //return BancoFake.Comandas
+            //    .Where(x => x.Status == StatusComanda.Aberta)
+            //    .ToList();
         }
     }
 }

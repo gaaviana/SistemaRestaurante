@@ -18,6 +18,7 @@ namespace SistemaRestaurante.UserControls
     public partial class UcPedido : UserControl
     {
         private readonly ComandaService comandaService;
+        public ProdutoService produtoService = new ProdutoService();
 
         public UcPedido(ComandaService service)
         {
@@ -65,7 +66,8 @@ namespace SistemaRestaurante.UserControls
 
         private void CarregarCb() // lista de produtos
         {
-            cbProduto.DataSource = BancoFake.Produtos;
+            cbProduto.DataSource = null;
+            cbProduto.DataSource = produtoService.Listar();
             cbProduto.DisplayMember = "Nome";
             cbProduto.ValueMember = "Id";
 
@@ -84,7 +86,8 @@ namespace SistemaRestaurante.UserControls
         }
         private void CarregarItens() // itens da comanda que foi aberta
         {
-            dgvProdutos.DataSource = comandaService.ComandaAtual;
+            dgvProdutos.DataSource = null;
+            dgvProdutos.DataSource = comandaService.ComandaAtual.Itens;
         }
         private void btnFinalizarPedido_Click(object sender, EventArgs e)
         {

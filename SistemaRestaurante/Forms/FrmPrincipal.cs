@@ -71,7 +71,7 @@ namespace SistemaRestaurante
 
         private void AbrirComandaExistente(Comanda comanda)
         {
-            comandaService.AbrirComanda(comanda);
+            comandaService.AbrirComanda(comanda.Id);
 
             UcPedido pedido = new UcPedido(comandaService);
 
