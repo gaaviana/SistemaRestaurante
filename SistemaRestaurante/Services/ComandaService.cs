@@ -79,11 +79,8 @@ namespace SistemaRestaurante.Services
 
                     foreach (var item in ComandaAtual.Itens)
                     {
-                        context.Attach(item.Produto);
-
                         comandaBanco.Itens.Add(new ItemPedido
                         {
-                            Produto = item.Produto,
                             ProdutoId = item.ProdutoId,
                             Quantidade = item.Quantidade
                         });
@@ -104,7 +101,7 @@ namespace SistemaRestaurante.Services
         {
             using (var context = new RestauranteContext())
             {
-                return context.Comandas
+                return context.Comandas.Include(c => c.Itens).ThenInclude(i => i.Produto)
                     .Where(c => c.Status == StatusComanda.Aberta)
                     .ToList();
             }
