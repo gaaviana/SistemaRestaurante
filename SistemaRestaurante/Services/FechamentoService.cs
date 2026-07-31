@@ -39,7 +39,7 @@ namespace SistemaRestaurante.Services
             }
             
             context.FechamentoCaixas.Add(fechamentoHoje);
-                context.SaveChanges();
+            context.SaveChanges();
 
             }
         }

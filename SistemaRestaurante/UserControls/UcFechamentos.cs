@@ -23,11 +23,9 @@ namespace SistemaRestaurante.UserControls
 
         public void AtualizarTabela()
         {
-            using(var context = new RestauranteContext())
-            {
                 dgvRelatorios.DataSource = null;
                 dgvRelatorios.DataSource = fechamentoService.ListarFechamento();
-            }
+
         }
     }
 }
