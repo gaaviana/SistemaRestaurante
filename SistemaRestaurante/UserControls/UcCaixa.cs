@@ -27,14 +27,13 @@ namespace SistemaRestaurante.UserControls
 
         public void AtualizarTela()
         {
-            if (BancoFake.Pagamentos.Count > 0)
-            {
+            //if (BancoFake.Pagamentos.Count > 0)
+            //{
                 lblVendasValor.Text = caixaService.QuantidadeVendas(dataSelecionada).ToString();
                 lblReceitaValor.Text = caixaService.ReceitaTotal(dataSelecionada).ToString("C");
                 lblTicketValor.Text = caixaService.TicketMedio(dataSelecionada).ToString("C");
                 lblItensValor.Text = caixaService.ItensVendidos(dataSelecionada).ToString();
-            }
-
+            //}
 
             dgvCaixa.DataSource = null;
             dgvCaixa.DataSource = caixaService.ObterVendas(dataSelecionada);

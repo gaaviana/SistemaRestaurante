@@ -14,7 +14,7 @@ namespace SistemaRestaurante.Services
         {
             using (var context = new RestauranteContext())
             {
-                var comandaBanco = context.Comandas.FirstOrDefault(c => c.Id == comandaId);
+                var comandaBanco = context.Comandas.Include(c => c.Itens).ThenInclude(i => i.Produto).FirstOrDefault(c => c.Id == comandaId);
 
                 if (comandaBanco == null)
                     return;

@@ -1,4 +1,5 @@
 ﻿using SistemaRestaurante.Data;
+using SistemaRestaurante.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,12 +12,22 @@ namespace SistemaRestaurante.UserControls
 {
     public partial class UcFechamentos : UserControl
     {
+        private FechamentoService fechamentoService = new FechamentoService();
         public UcFechamentos()
         {
             InitializeComponent();
             dgvRelatorios.AutoGenerateColumns = false;
 
-            dgvRelatorios.DataSource = BancoFake.fechamentos;
+            AtualizarTabela();
+        }
+
+        public void AtualizarTabela()
+        {
+            using(var context = new RestauranteContext())
+            {
+                dgvRelatorios.DataSource = null;
+                dgvRelatorios.DataSource = fechamentoService.ListarFechamento;
+            }
         }
     }
 }

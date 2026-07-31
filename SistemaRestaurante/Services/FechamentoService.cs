@@ -10,13 +10,18 @@ namespace SistemaRestaurante.Services
 {
     public class FechamentoService
     {
+        public List<FechamentoCaixa> ListarFechamento()
+        {
+            using (var context = new RestauranteContext())
+            {
+                return context.FechamentoCaixas.OrderByDescending(f => f.Data).ToList();
+            }
+        }
         public void GerarFechamento(DateTime data)
         {
-           
-
-            var pagamentosHoje = BancoFake.Pagamentos.Where(p => p.Data.Date == data.Date).ToList();
-
-            int id = BancoFake.fechamentos.Count + 1;
+           using (var context = new RestauranteContext())
+            {
+            var pagamentosHoje = context.Pagamentos.Where(p => p.Data.Date == data.Date).ToList();
 
             int totalVendas = pagamentosHoje.Count;
             decimal totalDinheiro = pagamentosHoje.Where(p => p.FormaPagamento == FormaPagamento.Dinheiro).Sum(p => p.Valor);
@@ -33,7 +38,10 @@ namespace SistemaRestaurante.Services
                 return;
             }
             
-            BancoFake.fechamentos.Add(fechamentoHoje);
+            context.FechamentoCaixas.Add(fechamentoHoje);
+                context.SaveChanges();
+
+            }
         }
     }
 }
