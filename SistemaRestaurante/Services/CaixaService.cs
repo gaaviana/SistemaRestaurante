@@ -1,4 +1,5 @@
-﻿using SistemaRestaurante.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SistemaRestaurante.Data;
 using SistemaRestaurante.Enums;
 using SistemaRestaurante.Models;
 using System;
@@ -9,36 +10,48 @@ namespace SistemaRestaurante.Services
 {
     public class CaixaService
     {
-        public void RegistrarPagamento(Comanda comanda,FormaPagamento formaPagamento,decimal valorRecebido)
+        public void RegistrarPagamento(int comandaId,FormaPagamento formaPagamento,decimal valorRecebido)
         {
-            Pagamento pagamento = new Pagamento
+            using (var context = new RestauranteContext())
             {
-                Id = BancoFake.Pagamentos.Count + 1,
-                FormaPagamento = formaPagamento,
-                Valor = comanda.Total,
-                ValorRecebido = valorRecebido,
-                Data = DateTime.Now
-            };
+                var comandaBanco = context.Comandas.FirstOrDefault(c => c.Id == comandaId);
 
-            comanda.Pagamento = pagamento;
-            comanda.Status = StatusComanda.Finalizada;
+                if (comandaBanco == null)
+                    return;
 
-            BancoFake.Pagamentos.Add(pagamento);
+                Pagamento pagamento = new Pagamento
+                {
+                    FormaPagamento = formaPagamento,
+                    Valor = comandaBanco.Total,
+                    ValorRecebido = valorRecebido,
+                    Data = DateTime.Now
+                };
+
+                comandaBanco.Pagamento = pagamento;
+                comandaBanco.Status = StatusComanda.Finalizada;
+
+                context.SaveChanges();
+                //BancoFake.Pagamentos.Add(pagamento);
+            }
         }
 
         private List<Pagamento> ObterPagamentosDoDia(DateTime data)
         {
-            return BancoFake.Pagamentos
-                .Where(p => p.Data.Date == data.Date)
-                .ToList();
+            using (var context = new RestauranteContext())
+            {
+                return context.Pagamentos.Where(p => p.Data.Date == data.Date).ToList();
+            }
         }
 
         private List<Comanda> ObterComandasDoDia(DateTime data)
         {
-            return BancoFake.Comandas
-                .Where(c => c.Status == StatusComanda.Finalizada &&
-                            c.DataPagamento.Value.Date == data.Date)
-                .ToList();
+            using(var context = new RestauranteContext())
+            {
+                return context.Comandas
+                    .Include(c => c.Pagamento)
+                    .Include(c => c.Itens).ThenInclude(i => i.Produto)
+                    .Where(c => c.Status == StatusComanda.Finalizada && c.Pagamento != null && c.Pagamento.Data.Date == data.Date).ToList();
+            }
         }
 
         public List<Comanda> ObterVendas(DateTime data)

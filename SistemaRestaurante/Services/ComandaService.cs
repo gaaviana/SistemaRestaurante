@@ -2,10 +2,6 @@
 using SistemaRestaurante.Data;
 using SistemaRestaurante.Enums;
 using SistemaRestaurante.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 
 namespace SistemaRestaurante.Services
 {
@@ -106,11 +102,12 @@ namespace SistemaRestaurante.Services
         }
         public List<Comanda> ComandasAbertas()
         {
-            return context.Comandas.Where(x => x.Status == StatusComanda.Aberta).ToList();
-
-            //return BancoFake.Comandas
-            //    .Where(x => x.Status == StatusComanda.Aberta)
-            //    .ToList();
+            using (var context = new RestauranteContext())
+            {
+                return context.Comandas
+                    .Where(c => c.Status == StatusComanda.Aberta)
+                    .ToList();
+            }
         }
     }
 }

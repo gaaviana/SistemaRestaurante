@@ -109,7 +109,7 @@ namespace SistemaRestaurante.Forms
             }
             // =========================================================
 
-            caixaService.RegistrarPagamento(comandaService.ComandaOriginal, forma, valorRecebido);
+            caixaService.RegistrarPagamento(comandaService.ComandaOriginal.Id, forma, valorRecebido);
 
             DialogResult = DialogResult.OK;
 

@@ -32,11 +32,6 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             dgvCaixa = new DataGridView();
-            colTipo = new DataGridViewTextBoxColumn();
-            colTipoNumero = new DataGridViewTextBoxColumn();
-            colFormaPagamento = new DataGridViewTextBoxColumn();
-            colValor = new DataGridViewTextBoxColumn();
-            ColHora = new DataGridViewTextBoxColumn();
             tlpCaixa = new TableLayoutPanel();
             pnlHeader = new Panel();
             dtpData = new DateTimePicker();
@@ -57,6 +52,11 @@
             pnlVendas = new Panel();
             lblVendasValor = new Label();
             lblVendas = new Label();
+            colTipo = new DataGridViewTextBoxColumn();
+            colTipoNumero = new DataGridViewTextBoxColumn();
+            colFormaPagamento = new DataGridViewTextBoxColumn();
+            colValor = new DataGridViewTextBoxColumn();
+            ColHora = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dgvCaixa).BeginInit();
             tlpCaixa.SuspendLayout();
             pnlHeader.SuspendLayout();
@@ -105,44 +105,6 @@
             dgvCaixa.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dgvCaixa.Size = new Size(958, 339);
             dgvCaixa.TabIndex = 2;
-            // 
-            // colTipo
-            // 
-            colTipo.DataPropertyName = "Tipo";
-            colTipo.HeaderText = "Tipo";
-            colTipo.Name = "colTipo";
-            colTipo.ReadOnly = true;
-            // 
-            // colTipoNumero
-            // 
-            colTipoNumero.DataPropertyName = "Numero";
-            colTipoNumero.HeaderText = "N° Comanda";
-            colTipoNumero.Name = "colTipoNumero";
-            colTipoNumero.ReadOnly = true;
-            // 
-            // colFormaPagamento
-            // 
-            colFormaPagamento.DataPropertyName = "FormaPagamento";
-            colFormaPagamento.HeaderText = "Forma Pagamento";
-            colFormaPagamento.Name = "colFormaPagamento";
-            colFormaPagamento.ReadOnly = true;
-            // 
-            // colValor
-            // 
-            colValor.DataPropertyName = "Total";
-            colValor.HeaderText = "Valor";
-            colValor.Name = "colValor";
-            colValor.ReadOnly = true;
-            // 
-            // ColHora
-            // 
-            ColHora.DataPropertyName = "DataPagamento";
-            dataGridViewCellStyle2.Format = "t";
-            dataGridViewCellStyle2.NullValue = null;
-            ColHora.DefaultCellStyle = dataGridViewCellStyle2;
-            ColHora.HeaderText = "Hora";
-            ColHora.Name = "ColHora";
-            ColHora.ReadOnly = true;
             // 
             // tlpCaixa
             // 
@@ -387,6 +349,44 @@
             lblVendas.Size = new Size(76, 25);
             lblVendas.TabIndex = 0;
             lblVendas.Text = "Vendas";
+            // 
+            // colTipo
+            // 
+            colTipo.DataPropertyName = "Tipo";
+            colTipo.HeaderText = "Tipo";
+            colTipo.Name = "colTipo";
+            colTipo.ReadOnly = true;
+            // 
+            // colTipoNumero
+            // 
+            colTipoNumero.DataPropertyName = "Numero";
+            colTipoNumero.HeaderText = "N° Comanda";
+            colTipoNumero.Name = "colTipoNumero";
+            colTipoNumero.ReadOnly = true;
+            // 
+            // colFormaPagamento
+            // 
+            colFormaPagamento.DataPropertyName = "FormaPagamento";
+            colFormaPagamento.HeaderText = "Forma Pagamento";
+            colFormaPagamento.Name = "colFormaPagamento";
+            colFormaPagamento.ReadOnly = true;
+            // 
+            // colValor
+            // 
+            colValor.DataPropertyName = "Total";
+            colValor.HeaderText = "Valor";
+            colValor.Name = "colValor";
+            colValor.ReadOnly = true;
+            // 
+            // ColHora
+            // 
+            ColHora.DataPropertyName = "DataPagamento";
+            dataGridViewCellStyle2.Format = "t";
+            dataGridViewCellStyle2.NullValue = null;
+            ColHora.DefaultCellStyle = dataGridViewCellStyle2;
+            ColHora.HeaderText = "Hora";
+            ColHora.Name = "ColHora";
+            ColHora.ReadOnly = true;
             // 
             // UcCaixa
             // 
