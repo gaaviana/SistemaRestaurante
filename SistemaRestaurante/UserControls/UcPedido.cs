@@ -57,7 +57,7 @@ namespace SistemaRestaurante.UserControls
         private void AtualizarTela() // atualiza itens e valor da comanda atual
         {
             dgvProdutos.DataSource = null;
-            dgvProdutos.DataSource = comandaService.ComandaAtual.Itens;
+            dgvProdutos.DataSource = comandaService.ComandaAtual.Itens.ToList();
 
             lblTotal.Text = comandaService.ComandaAtual.Total.ToString("C");
 
