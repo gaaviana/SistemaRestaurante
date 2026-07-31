@@ -20,10 +20,8 @@ namespace SistemaRestaurante.Services
         {
             ComandaOriginal = null;
 
-            int NumeroPedido = BancoFake.Comandas.Count + 1;
-
             ComandaAtual = new Comanda(
-                NumeroPedido,
+                0,
                 null,
                 null,
                 StatusComanda.Aberta,

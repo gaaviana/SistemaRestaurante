@@ -9,12 +9,15 @@ namespace SistemaRestaurante.Validations
     {
         public static bool Validar(FechamentoCaixa fechamento)
         {
-            bool fechamentoExistente = BancoFake.fechamentos.Any(f => f.Data.Date == fechamento.Data.Date);
-
-            if (fechamentoExistente)
+            using (var context = new RestauranteContext())
             {
-                Mensagens.Erro("Já existe um fechamento para essa Data.");
-                return false;
+                bool fechamentoExistente = context.FechamentoCaixas.Any(f => f.Data.Date == fechamento.Data.Date);
+
+                if (fechamentoExistente)
+                {
+                    Mensagens.Erro("Já existe um fechamento para essa Data.");
+                    return false;
+                }
             }
 
             if(fechamento.QuantidadeVendas <= 0)

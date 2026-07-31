@@ -26,7 +26,7 @@ namespace SistemaRestaurante.UserControls
             using(var context = new RestauranteContext())
             {
                 dgvRelatorios.DataSource = null;
-                dgvRelatorios.DataSource = fechamentoService.ListarFechamento;
+                dgvRelatorios.DataSource = fechamentoService.ListarFechamento();
             }
         }
     }
