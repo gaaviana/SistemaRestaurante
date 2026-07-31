@@ -50,7 +50,7 @@ namespace SistemaRestaurante.UserControls
             rbMesa.Checked = comandaService.ComandaAtual.Tipo == TipoComanda.Mesa;
             rbViagem.Checked = comandaService.ComandaAtual.Tipo == TipoComanda.Viagem;
 
-            int idPedido = comandaService.ComandaAtual.NumeroPedido; // tbm verificar comom vai ficar apos o migrate 
+            int idPedido = comandaService.ComandaAtual.Id; // tbm verificar comom vai ficar apos o migrate 
 
             lblNumeroPedido.Text = $"Pedido #{idPedido:D4}";
         }

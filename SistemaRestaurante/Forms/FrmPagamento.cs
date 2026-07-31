@@ -23,7 +23,7 @@ namespace SistemaRestaurante.Forms
             comandaService = service;
             caixaService = new CaixaService();
 
-            lblNumeroPedido.Text = $"Pedido #{comandaService.ComandaAtual.NumeroPedido:D4}"; // tenho que verificar como vai ficar no banco
+            lblNumeroPedido.Text = $"Pedido #{comandaService.ComandaAtual.Id:D4}"; // tenho que verificar como vai ficar no banco
             lblTipoPedido.Text = comandaService.ComandaAtual.Tipo.ToString();
             lblNumeroTipoPedido.Text = comandaService.ComandaAtual.Numero.ToString();
             lblValorTotal.Text = comandaService.ComandaAtual.Total.ToString("C");
